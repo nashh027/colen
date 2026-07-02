@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colores que enseñan</title>
+    <!-- Tailwind CSS para diseño rápido y responsivo -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Paleta de colores personalizada */
+        body {
+            background-color: #F4FCB8;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #452C18;
+        }
+        /* Enmarcado del título y textos destacados */
+        .framed-box {
+            border: 4px solid #CC7254;
+            background-color: #FFFDF0;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+        /* Botón Empezar con borde específico */
+        .btn-empezar {
+            border: 4px solid #452C18;
+            background-color: #FFF;
+            color: #452C18;
+            transition: all 0.2s ease;
+        }
+        .btn-empezar:hover {
+            background-color: #452C18;
+            color: #F4FCB8;
+            transform: scale(1.05);
+        }
+        /* Botón interactivo general verde */
+        .btn-verde {
+            background-color: #95A868;
+            color: white;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .btn-verde:hover {
+            background-color: #7d9152;
+            transform: scale(1.03);
+        }
+        /* Botón interactivo general marrón */
+        .btn-brown {
+            background-color: #452C18;
+            color: #F4FCB8;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .btn-brown:hover {
+            background-color: #5c3b20;
+            transform: scale(1.03);
+        }
+        /* Tarjetas de información */
+        .info-card {
+            background-color: #FFFDF0;
+            border: 3px solid #CC7254;
+            border-radius: 0.75rem;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between p-4 md:p-8">
+
+    <!-- CONTENEDOR PRINCIPAL -->
+    <main class="max-w-4xl mx-auto w-full my-auto flex flex-col items-center justify-center">
+
+        <!-- ================= SECCIÓN 1: PORTADA PRINCIPAL ================= -->
+        <section id="seccion-portada" class="w-full flex flex-col items-center text-center space-y-6">
+            <!-- Espacio reservado para la imagen con una ilustración inclusiva SVG placeholder integrada -->
+            <div class="w-full max-w-md aspect-video bg-white rounded-2xl border-4 border-[#CC7254] flex flex-col items-center justify-center p-4 shadow-md overflow-hidden relative group">
+                <!-- Ilustración SVG de niños felices colaborando -->
+                <svg class="w-2/3 h-2/3 text-[#95A868]" viewBox="0 0 200 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="60" cy="50" r="20" fill="#CC7254" />
+                    <circle cx="140" cy="50" r="20" fill="#95A868" />
+                    <path d="M30 100 C30 75, 90 75, 90 100" fill="#452C18" />
+                    <path d="M110 100 C110 75, 170 75, 170 100" fill="#CC7254" />
+                    <path d="M60 85 L140 85" stroke="#452C18" stroke-width="4" stroke-dasharray="4 4" />
+                    <circle cx="100" cy="85" r="12" fill="#F4FCB8" stroke="#452C18" stroke-width="2" />
+                    <path d="M95 85 Q100 90 105 85" stroke="#452C18" stroke-width="2" fill="none"/>
+                </svg>
+                <div class="absolute bottom-2 text-xs font-semibold text-[#452C18] opacity-75">
+                    [Espacio para imagen de portada - Colores que enseñan]
+                </div>
+            </div>
+
+            <!-- Título de la página enmarcado en el color #CC7254 -->
+            <div class="framed-box px-8 py-5 w-full max-w-xl">
+                <h1 class="text-3xl md:text-5xl font-black tracking-wide text-[#452C18]">
+                    Colores que enseñan
+                </h1>
+            </div>
+
+            <!-- Botón Empezar con el marco #452C18 -->
+            <div class="pt-4">
+                <button onclick="cambiarSeccion('seccion-presentacion')" class="btn-empezar px-10 py-4 rounded-full text-xl md:text-2xl font-bold uppercase tracking-wider cursor-pointer shadow-lg">
+                    Empezar
+                </button>
+            </div>
+        </section>
+
+
+        <!-- ================= SECCIÓN 2: PRESENTACIÓN / OBJETIVO ================= -->
+        <section id="seccion-presentacion" class="w-full hidden flex flex-col items-center text-center space-y-6">
+            
+            <!-- Marco superior con el texto de presentación enmarcado en #CC7254 -->
+            <div class="framed-box p-6 md:p-8 w-full max-w-3xl">
+                <p class="text-base md:text-lg leading-relaxed text-[#452C18] font-medium text-justify">
+                    Nuestra página web tiene como objetivo promover la inclusión y el conocimiento sobre las diferentes discapacidades de una manera sencilla, dinámica y accesible para niños, docentes y familias. En ella podrán encontrar información clara sobre cada discapacidad, sus principales características y recomendaciones para favorecer la inclusión. Además, contará con una sección de juegos interactivos que reforzarán el aprendizaje de una forma divertida, permitiendo que los usuarios comprendan mejor estos temas mientras desarrollan valores como el respeto, la empatía y la diversidad. Nuestro propósito es que aprender sobre discapacidad sea una experiencia educativa, entretenida y significativa para todos.
+                </p>
+            </div>
+
+            <!-- Botón Conozcamos las discapacidades de color #95A868 -->
+            <div class="w-full max-w-md pt-2 space-y-4">
+                <button onclick="cambiarSeccion('seccion-discapacidades')" class="btn-verde w-full py-4 px-6 rounded-2xl text-lg md:text-xl font-bold uppercase tracking-wide cursor-pointer">
+                    ¡Conozcamos las discapacidades!
+                </button>
+
+                <!-- Botón de Juegos -->
+                <button onclick="cambiarSeccion('seccion-juegos')" class="btn-brown w-full py-4 px-6 rounded-2xl text-lg md:text-xl font-bold uppercase tracking-wide cursor-pointer">
+                    ¡Juegos!
+                </button>
+            </div>
+        </section>
+
+
+        <!-- ================= SECCIÓN 3: MENÚ DE DISCAPACIDADES ================= -->
+        <section id="seccion-discapacidades" class="w-full hidden flex flex-col items-center space-y-6">
+            <div class="framed-box px-6 py-4 w-full max-w-xl text-center">
+                <h2 class="text-2xl md:text-3xl font-extrabold text-[#452C18]">
+                    Tipos de Discapacidad
+                </h2>
+                <p class="text-sm mt-1">Selecciona una para conocer más información</p>
+            </div>
+
+            <!-- Botones verticales para cada discapacidad -->
+            <div class="w-full max-w-md flex flex-col space-y-4">
+                <button onclick="mostrarInfoDiscapacidad('visual')" class="btn-verde py-4 px-8 rounded-xl font-bold text-lg md:text-xl capitalize hover:bg-[#839656]">
+                    Visual 👁️
+                </button>
+                <button onclick="mostrarInfoDiscapacidad('auditiva')" class="btn-verde py-4 px-8 rounded-xl font-bold text-lg md:text-xl capitalize hover:bg-[#839656]">
+                    Auditiva 👂
+                </button>
+                <button onclick="mostrarInfoDiscapacidad('motriz')" class="btn-verde py-4 px-8 rounded-xl font-bold text-lg md:text-xl capitalize hover:bg-[#839656]">
+                    Motriz ♿
+                </button>
+                <button onclick="mostrarInfoDiscapacidad('intelectual')" class="btn-verde py-4 px-8 rounded-xl font-bold text-lg md:text-xl capitalize hover:bg-[#839656]">
+                    Intelectual 🧠
+                </button>
+            </div>
+
+            <!-- Panel de información detallada interactivo -->
+            <div id="panel-info" class="w-full max-w-2xl info-card p-6 hidden">
+                <h3 id="info-titulo" class="text-2xl font-bold text-[#CC7254] mb-3 capitalize"></h3>
+                <p id="info-descripcion" class="text-base text-[#452C18] mb-4 text-justify"></p>
+                <div class="bg-[#F4FCB8] p-4 rounded-lg border-2 border-[#95A868]">
+                    <h4 class="font-bold text-[#452C18] mb-2">💡 Recomendación Inclusiva:</h4>
+                    <p id="info-recomendacion" class="text-sm text-[#452C18] italic"></p>
+                </div>
+            </div>
+
+            <!-- Botón de navegación para volver -->
+            <button onclick="cambiarSeccion('seccion-presentacion')" class="btn-brown px-6 py-2 rounded-lg text-sm font-bold flex items-center space-x-2">
+                <span>⬅️ Volver</span>
+            </button>
+        </section>
+
+
+        <!-- ================= SECCIÓN 4: JUEGOS INTERACTIVOS ================= -->
+        <section id="seccion-juegos" class="w-full hidden flex flex-col items-center space-y-6">
+            <div class="framed-box px-6 py-4 w-full max-w-xl text-center">
+                <h2 class="text-2xl md:text-3xl font-extrabold text-[#452C18]">
+                    Juego de Empatía
+                </h2>
+                <p class="text-sm mt-1">¿Cómo podemos comunicarnos mejor? Elige la opción correcta.</p>
+            </div>
+
+            <!-- Tarjeta del Mini-Juego -->
+            <div class="w-full max-w-xl info-card p-6 text-center">
+                <div class="mb-4">
+                    <span id="juego-nivel" class="bg-[#95A868] text-white text-xs font-bold px-3 py-1 rounded-full uppercase">Nivel 1 de 3</span>
+                </div>
+                <h3 id="juego-pregunta" class="text-lg md:text-xl font-bold mb-6 text-[#452C18]">
+                    Si juegas con un amigo que tiene discapacidad visual, ¿cuál es la mejor manera de ayudarle a orientarse?
+                </h3>
+
+                <div id="juego-opciones" class="space-y-3">
+                    <!-- Las opciones se generarán dinámicamente mediante JS -->
+                </div>
+
+                <div id="juego-feedback" class="mt-6 p-4 rounded-xl hidden font-bold text-center">
+                    <!-- Mensaje de éxito o reintento -->
+                </div>
+            </div>
+
+            <!-- Botones de navegación del juego -->
+            <div class="flex space-x-4">
+                <button onclick="cambiarSeccion('seccion-presentacion')" class="btn-brown px-6 py-2 rounded-lg text-sm font-bold flex items-center space-x-2">
+                    <span>⬅️ Volver al menú</span>
+                </button>
+                <button id="btn-siguiente-juego" onclick="siguientePregunta()" class="btn-verde px-6 py-2 rounded-lg text-sm font-bold hidden">
+                    <span>Siguiente Pregunta ➡️</span>
+                </button>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="w-full text-center py-4 text-xs font-semibold text-[#452C18] opacity-75 mt-8 border-t border-[#CC7254] max-w-4xl mx-auto">
+        &copy; 2026 Colores que enseñan - Promoviendo la inclusión escolar y familiar.
+    </footer>
+
+    <!-- SCRIPT DE INTERACCIÓN -->
+    <script>
+        // Datos para la sección de discapacidades
+        const infoDiscapacidades = {
+            visual: {
+                titulo: "Discapacidad Visual 👁️",
+                descripcion: "La discapacidad visual se define como la pérdida parcial o total de la vista. Esto incluye a las personas ciegas (que no ven nada) y a personas con baja visión (que necesitan lentes especiales, lupas o tipografía más grande para poder leer).",
+                recomendacion: "Al hablar con un compañero con discapacidad visual, háblale directamente identificándote por tu nombre. No utilices gestos vagos como 'ahí' o 'allá', describe con precisión: 'a tu derecha', 'sobre la mesa'."
+            },
+            auditiva: {
+                titulo: "Discapacidad Auditiva 👂",
+                descripcion: "Es la pérdida total o parcial para percibir los sonidos. Las personas sordas se comunican principalmente de forma visual, utilizando la Lengua de Señas, gestos, lectura de labios o textos escritos.",
+                recomendacion: "Para comunicarte mejor, míralo siempre de frente al hablar, vocaliza de forma clara sin exagerar ni gritar, y si es necesario utiliza dibujos, señas naturales o apóyate escribiendo en un papel."
+            },
+            motriz: {
+                titulo: "Discapacidad Motriz ♿",
+                descripcion: "Es la dificultad o limitación que presentan algunas personas para moverse, mantener posturas o coordinar movimientos de su cuerpo. Puede deberse a factores de nacimiento o accidentes, y muchos utilizan sillas de ruedas, muletas o andadores.",
+                recomendacion: "Asegúrate de que los espacios de juego o estudio estén libres de obstáculos. Si vas a conversar largo rato con alguien en silla de ruedas, siéntate para estar a la misma altura de sus ojos."
+            },
+            intelectual: {
+                titulo: "Discapacidad Intelectual 🧠",
+                descripcion: "Se caracteriza por limitaciones en el funcionamiento intelectual general y en la adaptación a la vida cotidiana. Esto hace que algunas actividades de aprendizaje, comunicación o cuidado personal requieran un ritmo más calmado y apoyos específicos.",
+                recomendacion: "Explica las instrucciones de los juegos de manera sencilla, paso a paso. Ten paciencia y dales el tiempo necesario para responder y expresarse sin presiones."
+            }
+        };
+
+        // Preguntas del mini-juego de empatía e inclusión
+        const bancoPreguntas = [
+            {
+                pregunta: "Si juegas con un amigo que tiene discapacidad visual, ¿cuál es la mejor manera de ayudarle a orientarse?",
+                opciones: [
+                    { texto: "Describir el lugar usando referencias claras como 'a tu derecha' o 'detrás de ti'.", correcta: true },
+                    { texto: "Llevarlo del brazo a todos lados sin avisarle para que no se caiga.", correcta: false },
+                    { texto: "Apuntar con el dedo y decirle: 'camina por allá'.", correcta: false }
+                ]
+            },
+            {
+                pregunta: "Estás explicando las reglas de un juego a un compañero con discapacidad intelectual, ¿cómo debes hacerlo?",
+                opciones: [
+                    { texto: "Hablar muy rápido para no aburrir a los demás compañeros.", correcta: false },
+                    { texto: "Dar explicaciones sencillas, paso a paso, usando ejemplos claros y con paciencia.", correcta: true },
+                    { texto: "Hacer el juego directamente sin explicarle para evitar que se confunda.", correcta: false }
+                ]
+            },
+            {
+                pregunta: "Un nuevo amigo que usa silla de ruedas quiere jugar al recreo con el grupo. ¿Qué es lo mejor que podemos hacer?",
+                opciones: [
+                    { texto: "Decirle que no puede jugar porque el patio tiene escaleras.", correcta: false },
+                    { texto: "Elegir un juego de mesa o una actividad donde todos podamos participar juntos en igualdad.", correcta: true },
+                    { texto: "Dejarlo mirando el juego desde un lado para que no se canse.", correcta: false }
+                ]
+            }
+        ];
+
+        let preguntaActual = 0;
+
+        // Función para cambiar de pantalla/sección de forma fluida
+        function cambiarSeccion(idSeccion) {
+            // Ocultar todas las secciones
+            document.getElementById('seccion-portada').classList.add('hidden');
+            document.getElementById('seccion-presentacion').classList.add('hidden');
+            document.getElementById('seccion-discapacidades').classList.add('hidden');
+            document.getElementById('seccion-juegos').classList.add('hidden');
+
+            // Mostrar la sección seleccionada
+            document.getElementById(idSeccion).classList.remove('hidden');
+
+            // Si entra a la sección de juegos, reiniciar o cargar el juego
+            if (idSeccion === 'seccion-juegos') {
+                preguntaActual = 0;
+                cargarPregunta();
+            }
+        }
+
+        // Función para interactuar con las discapacidades
+        function mostrarInfoDiscapacidad(clave) {
+            const info = infoDiscapacidades[clave];
+            if (info) {
+                document.getElementById('info-titulo').innerText = info.titulo;
+                document.getElementById('info-descripcion').innerText = info.descripcion;
+                document.getElementById('info-recomendacion').innerText = info.recomendacion;
+                
+                // Mostrar panel con animación
+                const panel = document.getElementById('panel-info');
+                panel.classList.remove('hidden');
+                panel.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // Cargar pregunta del juego
+        function cargarPregunta() {
+            const datosPregunta = bancoPreguntas[preguntaActual];
+            document.getElementById('juego-nivel').innerText = `Caso ${preguntaActual + 1} de ${bancoPreguntas.length}`;
+            document.getElementById('juego-pregunta').innerText = datosPregunta.pregunta;
+
+            const contenedorOpciones = document.getElementById('juego-opciones');
+            contenedorOpciones.innerHTML = '';
+
+            const feedback = document.getElementById('juego-feedback');
+            feedback.classList.add('hidden');
+            document.getElementById('btn-siguiente-juego').classList.add('hidden');
+
+            datosPregunta.opciones.forEach((opcion, index) => {
+                const boton = document.createElement('button');
+                boton.className = "w-full text-left p-4 rounded-xl border-2 border-[#452C18] bg-white hover:bg-[#F4FCB8] font-semibold text-[#452C18] transition duration-200";
+                boton.innerText = opcion.texto;
+                boton.onclick = () => verificarRespuesta(opcion.correcta, boton);
+                contenedorOpciones.appendChild(boton);
+            });
+        }
+
+        // Verificar respuesta seleccionada en el juego
+        function verificarRespuesta(esCorrecta, botonSeleccionado) {
+            const feedback = document.getElementById('juego-feedback');
+            feedback.classList.remove('hidden');
+
+            // Deshabilitar todas las opciones tras responder
+            const opcionesBotones = document.getElementById('juego-opciones').querySelectorAll('button');
+            opcionesBotones.forEach(btn => btn.disabled = true);
+
+            if (esCorrecta) {
+                botonSeleccionado.className = "w-full text-left p-4 rounded-xl border-4 border-[#95A868] bg-[#eef6dd] font-bold text-[#452C18]";
+                feedback.className = "mt-6 p-4 rounded-xl font-bold text-center bg-[#95A868] text-white";
+                feedback.innerText = "¡Excelente respuesta! Así promovemos la verdadera empatía e inclusión. 🌟";
+                document.getElementById('btn-siguiente-juego').classList.remove('hidden');
+            } else {
+                botonSeleccionado.className = "w-full text-left p-4 rounded-xl border-4 border-[#CC7254] bg-[#fdf2ee] font-bold text-[#452C18]";
+                feedback.className = "mt-6 p-4 rounded-xl font-bold text-center bg-[#CC7254] text-white";
+                feedback.innerText = "¡Inténtalo de nuevo! Piensa en cómo te gustaría que te incluyeran si estuvieras en su lugar.";
+                
+                // Permitir reintentar habilitando los botones después de un instante
+                setTimeout(() => {
+                    opcionesBotones.forEach(btn => btn.disabled = false);
+                }, 1000);
+            }
+        }
+
+        // Pasar a la siguiente pregunta del juego
+        function siguientePregunta() {
+            preguntaActual++;
+            if (preguntaActual < bancoPreguntas.length) {
+                cargarPregunta();
+            } else {
+                // Fin del juego
+                const contenedorOpciones = document.getElementById('juego-opciones');
+                contenedorOpciones.innerHTML = '';
+                document.getElementById('juego-pregunta').innerText = "¡Felicidades! Has completado el desafío de empatía. Ahora comprendes mucho mejor cómo construir un mundo inclusivo.";
+                document.getElementById('juego-feedback').className = "mt-6 p-6 rounded-xl font-bold text-center bg-[#95A868] text-white text-lg";
+                document.getElementById('juego-feedback').innerHTML = "¡Eres un gran campeón de la inclusión! 🏆👫🌈";
+                document.getElementById('btn-siguiente-juego').classList.add('hidden');
+            }
+        }
+    </script>
+</body>
+</html>
