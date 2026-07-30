@@ -1,369 +1,1115 @@
-<!DOCTYPE html>
+
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Colores que enseñan</title>
-    <!-- Tailwind CSS para diseño rápido y responsivo -->
+    <title>Mundo Inclusivo - Portal sobre Discapacidades</title>
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Font Fredoka for clean typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
     <style>
-        /* Paleta de colores personalizada */
+        :root {
+            --bg-color: #A6BF91;
+            --text-color: #400428;
+            --btn-color: #78576B;
+            --box-color: #f4E196;
+        }
+
         body {
-            background-color: #F4FCB8;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            color: #452C18;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Fredoka', sans-serif;
+            min-height: 100vh;
         }
-        /* Enmarcado del título y textos destacados */
-        .framed-box {
-            border: 4px solid #CC7254;
-            background-color: #FFFDF0;
-            border-radius: 1rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+
+        /* Content containers without purple or dark borders */
+        .custom-box {
+            background-color: var(--box-color);
+            border-radius: 24px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+            border: none !important;
         }
-        /* Botón Empezar con borde específico */
-        .btn-empezar {
-            border: 4px solid #452C18;
-            background-color: #FFF;
-            color: #452C18;
+
+        /* Buttons without borders */
+        .custom-btn {
+            background-color: var(--btn-color);
+            color: #ffffff;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
             transition: all 0.2s ease;
+            border-radius: 18px;
+            font-weight: 600;
+            border: none !important;
+            outline: none !important;
         }
-        .btn-empezar:hover {
-            background-color: #452C18;
-            color: #F4FCB8;
-            transform: scale(1.05);
+
+        .custom-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px -2px rgba(0, 0, 0, 0.15);
+            filter: brightness(1.08);
         }
-        /* Botón interactivo general verde */
-        .btn-verde {
-            background-color: #95A868;
-            color: white;
-            transition: all 0.2s ease;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+        .custom-btn:active {
+            transform: translateY(1px);
+            box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.1);
         }
-        .btn-verde:hover {
-            background-color: #7d9152;
-            transform: scale(1.03);
+
+        .btn-secondary {
+            background-color: #ffffff;
+            color: var(--text-color);
         }
-        /* Botón interactivo general marrón */
-        .btn-brown {
-            background-color: #452C18;
-            color: #F4FCB8;
-            transition: all 0.2s ease;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
         }
-        .btn-brown:hover {
-            background-color: #5c3b20;
-            transform: scale(1.03);
+        ::-webkit-scrollbar-track {
+            background: var(--bg-color);
         }
-        /* Tarjetas de información */
-        .info-card {
-            background-color: #FFFDF0;
-            border: 3px solid #CC7254;
-            border-radius: 0.75rem;
+        ::-webkit-scrollbar-thumb {
+            background: var(--btn-color);
+            border-radius: 5px;
         }
     </style>
 </head>
-<body class="min-h-screen flex flex-col justify-between p-4 md:p-8">
+<body class="p-4 md:p-8 flex flex-col justify-between min-h-screen">
 
-    <!-- CONTENEDOR PRINCIPAL -->
-    <main class="max-w-4xl mx-auto w-full my-auto flex flex-col items-center justify-center">
-
-        <!-- ================= SECCIÓN 1: PORTADA PRINCIPAL ================= -->
-        <section id="seccion-portada" class="w-full flex flex-col items-center text-center space-y-6">
-            <!-- Espacio reservado para la imagen con una ilustración inclusiva SVG placeholder integrada -->
-            <div class="w-full max-w-md aspect-video bg-white rounded-2xl border-4 border-[#CC7254] flex flex-col items-center justify-center p-4 shadow-md overflow-hidden relative group">
-                <!-- Ilustración SVG de niños felices colaborando -->
-                <svg class="w-2/3 h-2/3 text-[#95A868]" viewBox="0 0 200 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="60" cy="50" r="20" fill="#CC7254" />
-                    <circle cx="140" cy="50" r="20" fill="#95A868" />
-                    <path d="M30 100 C30 75, 90 75, 90 100" fill="#452C18" />
-                    <path d="M110 100 C110 75, 170 75, 170 100" fill="#CC7254" />
-                    <path d="M60 85 L140 85" stroke="#452C18" stroke-width="4" stroke-dasharray="4 4" />
-                    <circle cx="100" cy="85" r="12" fill="#F4FCB8" stroke="#452C18" stroke-width="2" />
-                    <path d="M95 85 Q100 90 105 85" stroke="#452C18" stroke-width="2" fill="none"/>
-                </svg>
-                <div class="absolute bottom-2 text-xs font-semibold text-[#452C18] opacity-75">
-                    [Espacio para imagen de portada - Colores que enseñan]
-                </div>
-            </div>
-
-            <!-- Título de la página enmarcado en el color #CC7254 -->
-            <div class="framed-box px-8 py-5 w-full max-w-xl">
-                <h1 class="text-3xl md:text-5xl font-black tracking-wide text-[#452C18]">
-                    Colores que enseñan
-                </h1>
-            </div>
-
-            <!-- Botón Empezar con el marco #452C18 -->
-            <div class="pt-4">
-                <button onclick="cambiarSeccion('seccion-presentacion')" class="btn-empezar px-10 py-4 rounded-full text-xl md:text-2xl font-bold uppercase tracking-wider cursor-pointer shadow-lg">
-                    Empezar
-                </button>
-            </div>
-        </section>
-
-
-        <!-- ================= SECCIÓN 2: PRESENTACIÓN / OBJETIVO ================= -->
-        <section id="seccion-presentacion" class="w-full hidden flex flex-col items-center text-center space-y-6">
-            
-            <!-- Marco superior con el texto de presentación enmarcado en #CC7254 -->
-            <div class="framed-box p-6 md:p-8 w-full max-w-3xl">
-                <p class="text-base md:text-lg leading-relaxed text-[#452C18] font-medium text-justify">
-                    Nuestra página web tiene como objetivo promover la inclusión y el conocimiento sobre las diferentes discapacidades de una manera sencilla, dinámica y accesible para niños, docentes y familias. En ella podrán encontrar información clara sobre cada discapacidad, sus principales características y recomendaciones para favorecer la inclusión. Además, contará con una sección de juegos interactivos que reforzarán el aprendizaje de una forma divertida, permitiendo que los usuarios comprendan mejor estos temas mientras desarrollan valores como el respeto, la empatía y la diversidad. Nuestro propósito es que aprender sobre discapacidad sea una experiencia educativa, entretenida y significativa para todos.
-                </p>
-            </div>
-
-            <!-- Botón Conozcamos las discapacidades de color #95A868 -->
-            <div class="w-full max-w-md pt-2 space-y-4">
-                <button onclick="cambiarSeccion('seccion-discapacidades')" class="btn-verde w-full py-4 px-6 rounded-2xl text-lg md:text-xl font-bold uppercase tracking-wide cursor-pointer">
-                    ¡Conozcamos las discapacidades!
-                </button>
-
-                <!-- Botón de Juegos -->
-                <button onclick="cambiarSeccion('seccion-juegos')" class="btn-brown w-full py-4 px-6 rounded-2xl text-lg md:text-xl font-bold uppercase tracking-wide cursor-pointer">
-                    ¡Juegos!
-                </button>
-            </div>
-        </section>
-
-
-        <!-- ================= SECCIÓN 3: MENÚ DE DISCAPACIDADES ================= -->
-        <section id="seccion-discapacidades" class="w-full hidden flex flex-col items-center space-y-6">
-            <div class="framed-box px-6 py-4 w-full max-w-xl text-center">
-                <h2 class="text-2xl md:text-3xl font-extrabold text-[#452C18]">
-                    Tipos de Discapacidad
-                </h2>
-                <p class="text-sm mt-1">Selecciona una para conocer más información</p>
-            </div>
-
-            <!-- Botones verticales para cada discapacidad -->
-            <div class="w-full max-w-md flex flex-col space-y-4">
-                <button onclick="mostrarInfoDiscapacidad('visual')" class="btn-verde py-4 px-8 rounded-xl font-bold text-lg md:text-xl capitalize hover:bg-[#839656]">
-                    Visual 👁️
-                </button>
-                <button onclick="mostrarInfoDiscapacidad('auditiva')" class="btn-verde py-4 px-8 rounded-xl font-bold text-lg md:text-xl capitalize hover:bg-[#839656]">
-                    Auditiva 👂
-                </button>
-                <button onclick="mostrarInfoDiscapacidad('motriz')" class="btn-verde py-4 px-8 rounded-xl font-bold text-lg md:text-xl capitalize hover:bg-[#839656]">
-                    Motriz ♿
-                </button>
-                <button onclick="mostrarInfoDiscapacidad('intelectual')" class="btn-verde py-4 px-8 rounded-xl font-bold text-lg md:text-xl capitalize hover:bg-[#839656]">
-                    Intelectual 🧠
-                </button>
-            </div>
-
-            <!-- Panel de información detallada interactivo -->
-            <div id="panel-info" class="w-full max-w-2xl info-card p-6 hidden">
-                <h3 id="info-titulo" class="text-2xl font-bold text-[#CC7254] mb-3 capitalize"></h3>
-                <p id="info-descripcion" class="text-base text-[#452C18] mb-4 text-justify"></p>
-                <div class="bg-[#F4FCB8] p-4 rounded-lg border-2 border-[#95A868]">
-                    <h4 class="font-bold text-[#452C18] mb-2">💡 Recomendación Inclusiva:</h4>
-                    <p id="info-recomendacion" class="text-sm text-[#452C18] italic"></p>
-                </div>
-            </div>
-
-            <!-- Botón de navegación para volver -->
-            <button onclick="cambiarSeccion('seccion-presentacion')" class="btn-brown px-6 py-2 rounded-lg text-sm font-bold flex items-center space-x-2">
-                <span>⬅️ Volver</span>
+    <header class="max-w-4xl mx-auto w-full text-center mb-4">
+        <div class="flex items-center justify-end">
+            <button id="soundToggleBtn" onclick="toggleAudio()" class="custom-btn text-sm px-4 py-2 flex items-center gap-2">
+                <i class="fas fa-volume-up"></i> <span id="soundStatusText">Sonido: ACTIVO</span>
             </button>
+        </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto w-full flex-grow flex flex-col justify-center items-center">
+
+        <!-- ==================== PANTALLA 1: BIENVENIDA ==================== -->
+        <section id="welcomeScreen" class="w-full flex flex-col items-center justify-center transition-all duration-300">
+            <div class="custom-box p-6 md:p-10 w-full text-center flex flex-col items-center">
+                
+                <!-- ESPACIO PARA LOGO -->
+                <div class="mb-6 relative group">
+                    <div id="logoContainer" class="w-36 h-36 md:w-44 md:h-44 bg-white rounded-full flex flex-col justify-center items-center p-3 shadow-md overflow-hidden cursor-pointer relative" onclick="triggerLogoUpload()">
+                        <div id="logoPlaceholder" class="flex flex-col items-center text-center">
+                            <i class="fas fa-hand-holding-heart text-4xl md:text-5xl text-[#78576B] mb-2"></i>
+                            <span class="text-xs font-bold text-[#400428]">Mundo Inclusivo</span>
+                        </div>
+                        <img id="customLogo" src="" alt="Logo Personalizado" class="hidden w-full h-full object-contain">
+                    </div>
+                    <input type="file" id="logoInput" accept="image/*" class="hidden" onchange="handleLogoUpload(event)">
+                </div>
+
+                <!-- TEXTO DE BIENVENIDA -->
+                <h1 class="text-3xl md:text-5xl font-extrabold mb-4 text-[#400428]">
+                    ¡Bienvenidos a colores que enseñan!
+                </h1>
+
+                <!-- ESPACIO DE TEXTO EDITABLE / INFORMATIVO -->
+                <div class="bg-white/90 rounded-2xl p-4 md:p-6 mb-8 text-left w-full max-w-2xl shadow-sm">
+                    <p class="text-base md:text-lg leading-relaxed text-[#400428]">
+                        Imagina que el mundo es como un gran lienzo de colores donde cada persona aporta su propia luz, brillo y alegría. Aquí queremos contarte de forma muy divertida y sencilla cuáles son las diferentes discapacidades que podemos encontrar a nuestro alrededor, como la visual, la auditiva, la motriz, la intelectual, la psicosocial o la múltiple cuando se tiene más de una.
+                    </p>
+                    <p class="text-base md:text-lg leading-relaxed text-[#400428] mt-3">
+                        En este espacio vas a descubrir que eso es justo lo que nos hace únicos. ¡Prepárate para explorar, jugar y aprender!
+                    </p>
+                </div>
+
+                <!-- BOTÓN EMPEZAR -->
+                <button onclick="navigateTo('menuScreen')" class="custom-btn px-8 py-4 text-xl md:text-2xl flex items-center gap-3">
+                    <span>EMPEZAR A EXPLORAR</span>
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
         </section>
 
+        <!-- ==================== PANTALLA 2: SELECCIÓN DE DISCAPACIDADES ==================== -->
+        <section id="menuScreen" class="w-full hidden flex-col items-center transition-all duration-300">
+            <div class="custom-box p-6 md:p-8 w-full text-center">
+                <h2 class="text-2xl md:text-4xl font-extrabold mb-2">Selecciona una Discapacidad</h2>
+                <p class="text-base md:text-lg mb-6 text-[#400428]">Haz clic en cualquiera de las opciones para ingresar a su sección informativa y de interacción:</p>
 
-        <!-- ================= SECCIÓN 4: JUEGOS INTERACTIVOS ================= -->
-        <section id="seccion-juegos" class="w-full hidden flex flex-col items-center space-y-6">
-            <div class="framed-box px-6 py-4 w-full max-w-xl text-center">
-                <h2 class="text-2xl md:text-3xl font-extrabold text-[#452C18]">
-                    Juego de Empatía
-                </h2>
-                <p class="text-sm mt-1">¿Cómo podemos comunicarnos mejor? Elige la opción correcta.</p>
-            </div>
+                <!-- GRID DE 6 BOTONES -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mb-8">
+                    
+                    <button onclick="navigateTo('auditivaScreen')" class="custom-btn p-5 flex flex-col items-center justify-center text-center gap-3 text-lg md:text-xl min-h-[130px]">
+                        <i class="fas fa-ear-deaf text-3xl md:text-4xl"></i>
+                        <span>Discapacidad Auditiva</span>
+                    </button>
 
-            <!-- Tarjeta del Mini-Juego -->
-            <div class="w-full max-w-xl info-card p-6 text-center">
-                <div class="mb-4">
-                    <span id="juego-nivel" class="bg-[#95A868] text-white text-xs font-bold px-3 py-1 rounded-full uppercase">Nivel 1 de 3</span>
+                    <button onclick="navigateTo('visualScreen')" class="custom-btn p-5 flex flex-col items-center justify-center text-center gap-3 text-lg md:text-xl min-h-[130px]">
+                        <i class="fas fa-eye-low-vision text-3xl md:text-4xl"></i>
+                        <span>Discapacidad Visual</span>
+                    </button>
+
+                    <button onclick="navigateTo('motrizScreen')" class="custom-btn p-5 flex flex-col items-center justify-center text-center gap-3 text-lg md:text-xl min-h-[130px]">
+                        <i class="fas fa-wheelchair text-3xl md:text-4xl"></i>
+                        <span>Discapacidad Motriz</span>
+                    </button>
+
+                    <button onclick="navigateTo('intelectualScreen')" class="custom-btn p-5 flex flex-col items-center justify-center text-center gap-3 text-lg md:text-xl min-h-[130px]">
+                        <i class="fas fa-brain text-3xl md:text-4xl"></i>
+                        <span>Discapacidad Intelectual</span>
+                    </button>
+
+                    <button onclick="navigateTo('psicosocialScreen')" class="custom-btn p-5 flex flex-col items-center justify-center text-center gap-3 text-lg md:text-xl min-h-[130px]">
+                        <i class="fas fa-heart-pulse text-3xl md:text-4xl"></i>
+                        <span>Discapacidad Psicosocial</span>
+                    </button>
+
+                    <button onclick="navigateTo('multipleScreen')" class="custom-btn p-5 flex flex-col items-center justify-center text-center gap-3 text-lg md:text-xl min-h-[130px]">
+                        <i class="fas fa-hands-holding-circle text-3xl md:text-4xl"></i>
+                        <span>Discapacidad Múltiple</span>
+                    </button>
+
                 </div>
-                <h3 id="juego-pregunta" class="text-lg md:text-xl font-bold mb-6 text-[#452C18]">
-                    Si juegas con un amigo que tiene discapacidad visual, ¿cuál es la mejor manera de ayudarle a orientarse?
-                </h3>
 
-                <div id="juego-opciones" class="space-y-3">
-                    <!-- Las opciones se generarán dinámicamente mediante JS -->
-                </div>
-
-                <div id="juego-feedback" class="mt-6 p-4 rounded-xl hidden font-bold text-center">
-                    <!-- Mensaje de éxito o reintento -->
-                </div>
-            </div>
-
-            <!-- Botones de navegación del juego -->
-            <div class="flex space-x-4">
-                <button onclick="cambiarSeccion('seccion-presentacion')" class="btn-brown px-6 py-2 rounded-lg text-sm font-bold flex items-center space-x-2">
-                    <span>⬅️ Volver al menú</span>
+                <!-- BOTÓN DE REGRESO -->
+                <button onclick="navigateTo('welcomeScreen')" class="custom-btn btn-secondary px-6 py-3 text-base md:text-lg flex items-center justify-center gap-2 mx-auto">
+                    <i class="fas fa-house"></i>
+                    <span>Regresar a Inicio</span>
                 </button>
-                <button id="btn-siguiente-juego" onclick="siguientePregunta()" class="btn-verde px-6 py-2 rounded-lg text-sm font-bold hidden">
-                    <span>Siguiente Pregunta ➡️</span>
-                </button>
+            </div>
+        </section>
+
+        <!-- ==================== 1. DISCAPACIDAD AUDITIVA ==================== -->
+        <section id="auditivaScreen" class="w-full hidden flex-col transition-all duration-300">
+            <div class="custom-box p-6 md:p-8 w-full">
+                <div class="flex flex-wrap items-center justify-between gap-4 mb-6 pb-4 border-b border-[#400428]/10">
+                    <div class="flex items-center gap-3">
+                        <div class="bg-[#78576B] text-white p-3 rounded-2xl">
+                            <i class="fas fa-ear-deaf text-2xl md:text-3xl"></i>
+                        </div>
+                        <h2 class="text-2xl md:text-3xl font-extrabold">Discapacidad Auditiva</h2>
+                    </div>
+                    <button onclick="navigateTo('menuScreen')" class="custom-btn btn-secondary px-4 py-2 text-sm md:text-base flex items-center gap-2">
+                        <i class="fas fa-arrow-left"></i> Regresar
+                    </button>
+                </div>
+
+                <div class="bg-white/90 p-5 rounded-2xl mb-6 shadow-sm">
+                    <h3 class="font-bold text-lg mb-2 text-[#78576B]">¿Qué es?</h3>
+                    <p class="text-sm md:text-base leading-relaxed">
+                        Imagina que todos tenemos un "botón de volumen" en los oídos para escuchar los sonidos del mundo, pero las personas con discapacidad auditiva tienen ese volumen muy bajito o en modo silencio; esto no significa que no puedan comunicarse, sino que utilizan formas increíbles para hacerlo, como usar las manos con la lengua de señas, observar el movimiento de los labios o usar aparatos especiales. Lo más importante es saber que son personas como tú y como yo, con los mismos sueños y ganas de jugar, y que cuando hablemos con ellos solo debemos mirarlos a la cara, hablar claro y ser pacientes para entendernos mejor.
+                    </p>
+                </div>
+
+                <!-- Juego: Ritmo y Luz Visual -->
+                <div class="bg-white p-4 md:p-6 rounded-2xl text-center shadow-sm">
+                    <span class="bg-[#78576B] text-white text-xs px-3 py-1 rounded-full uppercase tracking-wider font-bold">Juego Educativo</span>
+                    <h4 class="text-xl font-bold mt-2 mb-2">Ritmo y Luz Visual</h4>
+                    
+                    <div class="bg-[#f4E196]/40 p-4 rounded-xl mb-4 text-left text-xs md:text-sm leading-relaxed">
+                        <strong>¿Cómo funciona el juego?</strong><br>
+                        Ritmo y Luz Visual: En lugar de guiarte por tonos audibles, este juego se basa únicamente en un patrón rítmico visual. Cada color tiene un símbolo geométrico de alto contraste para mejorar la legibilidad. Observa la secuencia de destellos de colores y repítela haciendo clic en los paneles.
+                    </div>
+
+                    <div id="lightGame" class="flex flex-col items-center">
+                        <div id="lightDisplay" class="w-full max-w-xs h-24 rounded-2xl bg-slate-900 mb-4 flex items-center justify-center text-white font-bold text-xl shadow-inner transition-colors duration-300">
+                            Presiona Iniciar
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-4 w-full max-w-xs mb-4">
+                            <button id="btnRed" onclick="pressColor(0)" class="h-24 rounded-2xl bg-red-500 font-bold text-white text-lg shadow-sm active:scale-95 transition-all flex flex-col items-center justify-center gap-1 border-4 border-white">
+                                <i class="fas fa-play -rotate-90 text-2xl"></i>
+                                <span>TRIÁNGULO</span>
+                            </button>
+                            <button id="btnBlue" onclick="pressColor(1)" class="h-24 rounded-2xl bg-blue-500 font-bold text-white text-lg shadow-sm active:scale-95 transition-all flex flex-col items-center justify-center gap-1 border-4 border-white">
+                                <i class="fas fa-square text-2xl"></i>
+                                <span>CUADRADO</span>
+                            </button>
+                            <button id="btnGreen" onclick="pressColor(2)" class="h-24 rounded-2xl bg-emerald-500 font-bold text-white text-lg shadow-sm active:scale-95 transition-all flex flex-col items-center justify-center gap-1 border-4 border-white">
+                                <i class="fas fa-circle text-2xl"></i>
+                                <span>CÍRCULO</span>
+                            </button>
+                            <button id="btnYellow" onclick="pressColor(3)" class="h-24 rounded-2xl bg-amber-500 font-bold text-white text-lg shadow-sm active:scale-95 transition-all flex flex-col items-center justify-center gap-1 border-4 border-white">
+                                <i class="fas fa-diamond text-2xl"></i>
+                                <span>ROMBO</span>
+                            </button>
+                        </div>
+
+                        <div id="lightStatus" class="font-bold text-base min-h-[28px] text-[#400428] mb-3">
+                            Haz clic en "Iniciar Secuencia Visual"
+                        </div>
+
+                        <button onclick="startLightSequence()" class="custom-btn px-6 py-2 text-sm">
+                            Iniciar Secuencia Visual
+                        </button>
+                    </div>
+                </div>
+
+                <div class="mt-6 text-center">
+                    <button onclick="navigateTo('menuScreen')" class="custom-btn px-6 py-3 text-base flex items-center justify-center gap-2 mx-auto">
+                        <i class="fas fa-th-large"></i> Regresar al Menú
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== 2. DISCAPACIDAD VISUAL ==================== -->
+        <section id="visualScreen" class="w-full hidden flex-col transition-all duration-300">
+            <div class="custom-box p-6 md:p-8 w-full">
+                <div class="flex flex-wrap items-center justify-between gap-4 mb-6 pb-4 border-b border-[#400428]/10">
+                    <div class="flex items-center gap-3">
+                        <div class="bg-[#78576B] text-white p-3 rounded-2xl">
+                            <i class="fas fa-eye-low-vision text-2xl md:text-3xl"></i>
+                        </div>
+                        <h2 class="text-2xl md:text-3xl font-extrabold">Discapacidad Visual</h2>
+                    </div>
+                    <button onclick="navigateTo('menuScreen')" class="custom-btn btn-secondary px-4 py-2 text-sm md:text-base flex items-center gap-2">
+                        <i class="fas fa-arrow-left"></i> Regresar
+                    </button>
+                </div>
+
+                <div class="bg-white/90 p-5 rounded-2xl mb-6 shadow-sm">
+                    <h3 class="font-bold text-lg mb-2 text-[#78576B]">¿Qué es?</h3>
+                    <p class="text-sm md:text-base leading-relaxed">
+                        Imagina que las personas con discapacidad visual tienen un "filtro" en sus ojos que les impide ver bien, por lo que ven todo muy borroso o no pueden ver imágenes; por eso, ellos usan sus oídos, su olfato y sus manos para conocer el mundo, leyendo con sus dedos gracias a puntitos especiales llamados Braille o usando bastones para caminar con seguridad.
+                    </p>
+                </div>
+
+                <!-- Juego: Eco-Localización -->
+                <div class="bg-white p-4 md:p-6 rounded-2xl text-center shadow-sm">
+                    <span class="bg-[#78576B] text-white text-xs px-3 py-1 rounded-full uppercase tracking-wider font-bold">Juego Educativo</span>
+                    <h4 class="text-xl font-bold mt-2 mb-2">Eco-Localización (Laberinto a Oscuras)</h4>
+                    
+                    <div class="bg-[#f4E196]/40 p-4 rounded-xl mb-4 text-left text-xs md:text-sm leading-relaxed">
+                        <strong>¿Cómo funciona el juego?</strong><br>
+                        Eco-Localización: El laberinto está completamente a oscuras. Para encontrar la salida, haz clic en el botón Radar para lanzar un pulso de eco que revelará los muros temporalmente. Muévete usando los botones de flecha o el teclado. ¡La cercanía de tu bastón también revela los bloques adyacentes!
+                    </div>
+
+                    <div id="radarGame" class="flex flex-col items-center">
+                        
+                        <!-- Grid Matrix display for the dark maze -->
+                        <div id="mazeGrid" class="grid grid-cols-7 gap-1 bg-slate-950 p-2 rounded-2xl mb-4 shadow-inner max-w-xs w-full aspect-square">
+                            <!-- Maze cells populated dynamically -->
+                        </div>
+
+                        <div class="flex items-center justify-center gap-3 mb-4 w-full max-w-xs">
+                            <button onclick="triggerRadarPulse()" class="custom-btn px-4 py-2 text-xs md:text-sm flex items-center gap-2 bg-amber-600">
+                                <i class="fas fa-bullhorn"></i> Lanzar Radar
+                            </button>
+                            <button onclick="resetMazeGame()" class="custom-btn btn-secondary px-3 py-2 text-xs">
+                                Reiniciar
+                            </button>
+                        </div>
+
+                        <!-- Directional controls -->
+                        <div class="grid grid-cols-3 gap-2 w-36 mb-2">
+                            <div></div>
+                            <button onclick="movePlayer(0, -1)" class="custom-btn p-3 text-lg"><i class="fas fa-arrow-up"></i></button>
+                            <div></div>
+                            <button onclick="movePlayer(-1, 0)" class="custom-btn p-3 text-lg"><i class="fas fa-arrow-left"></i></button>
+                            <button onclick="movePlayer(0, 1)" class="custom-btn p-3 text-lg"><i class="fas fa-arrow-down"></i></button>
+                            <button onclick="movePlayer(1, 0)" class="custom-btn p-3 text-lg"><i class="fas fa-arrow-right"></i></button>
+                        </div>
+
+                        <div id="radarFeedback" class="mt-2 font-bold text-sm min-h-[28px] text-[#400428]">
+                            Lanza un pulso de eco o usa tu bastón para orientarte hacia la salida.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-6 text-center">
+                    <button onclick="navigateTo('menuScreen')" class="custom-btn px-6 py-3 text-base flex items-center justify-center gap-2 mx-auto">
+                        <i class="fas fa-th-large"></i> Regresar al Menú
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== 3. DISCAPACIDAD MOTRIZ ==================== -->
+        <section id="motrizScreen" class="w-full hidden flex-col transition-all duration-300">
+            <div class="custom-box p-6 md:p-8 w-full">
+                <div class="flex flex-wrap items-center justify-between gap-4 mb-6 pb-4 border-b border-[#400428]/10">
+                    <div class="flex items-center gap-3">
+                        <div class="bg-[#78576B] text-white p-3 rounded-2xl">
+                            <i class="fas fa-wheelchair text-2xl md:text-3xl"></i>
+                        </div>
+                        <h2 class="text-2xl md:text-3xl font-extrabold">Discapacidad Motriz</h2>
+                    </div>
+                    <button onclick="navigateTo('menuScreen')" class="custom-btn btn-secondary px-4 py-2 text-sm md:text-base flex items-center gap-2">
+                        <i class="fas fa-arrow-left"></i> Regresar
+                    </button>
+                </div>
+
+                <div class="bg-white/90 p-5 rounded-2xl mb-6 shadow-sm">
+                    <h3 class="font-bold text-lg mb-2 text-[#78576B]">¿Qué es?</h3>
+                    <p class="text-sm md:text-base leading-relaxed">
+                        Es cuando el cuerpo de alguien funciona de forma diferente al moverse, como si sus piernas o sus brazos no les hicieran caso tan rápido o no tuvieran la misma fuerza; por eso, algunas personas necesitan usar una silla de ruedas o muletas para ir a todas partes, pero esto no les quita las ganas de jugar, de correr carreras con nosotros o de participar en todo.
+                    </p>
+                </div>
+
+                <!-- Juego: Pulsador Único -->
+                <div class="bg-white p-4 md:p-6 rounded-2xl text-center shadow-sm">
+                    <span class="bg-[#78576B] text-white text-xs px-3 py-1 rounded-full uppercase tracking-wider font-bold">Juego Educativo</span>
+                    <h4 class="text-xl font-bold mt-2 mb-2">Acceso por Pulsador Único</h4>
+                    
+                    <div class="bg-[#f4E196]/40 p-4 rounded-xl mb-4 text-left text-xs md:text-sm leading-relaxed">
+                        <strong>¿Cómo funciona el juego?</strong><br>
+                        Pulsador Único: Un puntero gira continuamente. No necesitas coordinar muchas teclas ni mover un mouse: solo dispones de un gran pulsador. Haz clic en el botón PULSAR (o presiona la tecla de Espacio) exactamente cuando la aguja pase por la zona verde para sumar puntos. ¡La zona verde cambiará de posición con cada acierto!
+                    </div>
+
+                    <div id="switchGame" class="flex flex-col items-center">
+                        <div class="relative w-56 h-56 rounded-full bg-slate-800 flex items-center justify-center mb-4 shadow-inner overflow-hidden border-4 border-amber-400">
+                            <!-- Canvas rotating pointer gauge -->
+                            <canvas id="gaugeCanvas" width="220" height="220" class="w-full h-full"></canvas>
+                        </div>
+
+                        <div class="text-sm font-bold text-[#400428] mb-3">
+                            PUNTOS: <span id="switchScoreText" class="text-xl text-[#78576B]">0</span>
+                        </div>
+
+                        <button onclick="triggerSingleSwitchAction()" class="custom-btn w-56 h-20 text-2xl font-black flex items-center justify-center gap-2 shadow-lg active:scale-95 bg-emerald-600 text-white border-4 border-white">
+                            PULSAR
+                        </button>
+                        <span class="text-xs text-slate-500 mt-2">(También puedes presionar la tecla ESPACIO en el teclado)</span>
+
+                        <div id="switchFeedback" class="mt-4 font-bold text-base min-h-[28px] text-[#400428]">
+                            Observa la aguja y presiona cuando esté en la zona verde.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-6 text-center">
+                    <button onclick="navigateTo('menuScreen')" class="custom-btn px-6 py-3 text-base flex items-center justify-center gap-2 mx-auto">
+                        <i class="fas fa-th-large"></i> Regresar al Menú
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== 4. DISCAPACIDAD INTELECTUAL ==================== -->
+        <section id="intelectualScreen" class="w-full hidden flex-col transition-all duration-300">
+            <div class="custom-box p-6 md:p-8 w-full">
+                <div class="flex flex-wrap items-center justify-between gap-4 mb-6 pb-4 border-b border-[#400428]/10">
+                    <div class="flex items-center gap-3">
+                        <div class="bg-[#78576B] text-white p-3 rounded-2xl">
+                            <i class="fas fa-brain text-2xl md:text-3xl"></i>
+                        </div>
+                        <h2 class="text-2xl md:text-3xl font-extrabold">Discapacidad Intelectual</h2>
+                    </div>
+                    <button onclick="navigateTo('menuScreen')" class="custom-btn btn-secondary px-4 py-2 text-sm md:text-base flex items-center gap-2">
+                        <i class="fas fa-arrow-left"></i> Regresar
+                    </button>
+                </div>
+
+                <div class="bg-white/90 p-5 rounded-2xl mb-6 shadow-sm">
+                    <h3 class="font-bold text-lg mb-2 text-[#78576B]">¿Qué es?</h3>
+                    <p class="text-sm md:text-base leading-relaxed">
+                        Significa que el cerebro de estas personas aprende de una forma distinta, como si ellos necesitaran que les expliquemos las cosas con más calma, con dibujos o con pasos muy sencillitos; a veces les toma un poco más de tiempo entender algunas tareas, pero con nuestra ayuda y mucha paciencia, ¡pueden aprender todo lo que se propongan!
+                    </p>
+                </div>
+
+                <!-- Juego: Higiene Saludable -->
+                <div class="bg-white p-4 md:p-6 rounded-2xl text-center shadow-sm">
+                    <span class="bg-[#78576B] text-white text-xs px-3 py-1 rounded-full uppercase tracking-wider font-bold">Juego Educativo</span>
+                    <h4 class="text-xl font-bold mt-2 mb-2">Higiene Saludable (Secuencia de Lavado de Manos)</h4>
+                    
+                    <div class="bg-[#f4E196]/40 p-4 rounded-xl mb-4 text-left text-xs md:text-sm leading-relaxed">
+                        <strong>¿Cómo funciona el juego?</strong><br>
+                        Higiene Saludable: Organiza la secuencia de lavado de manos. Toca los pictogramas en el orden lógico correcto para colocarlos en los cuadros de arriba. Si te equivocas, haz clic en el pictograma del tablero superior para devolverlo.
+                    </div>
+
+                    <div id="intelectualGame" class="flex flex-col items-center">
+                        
+                        <!-- Top sequence slots -->
+                        <div class="w-full max-w-xl bg-[#f4E196] p-3 rounded-2xl grid grid-cols-2 sm:grid-cols-4 gap-2 mb-6 shadow-inner">
+                            <div class="flex flex-col items-center">
+                                <span class="text-xs font-bold mb-1">Paso 1</span>
+                                <div id="handSlot0" onclick="returnHandSlot(0)" class="w-full h-24 bg-white rounded-xl border-2 border-dashed border-[#78576B] flex flex-col items-center justify-center text-xs p-1 cursor-pointer font-bold text-[#400428] hover:bg-slate-50 transition-colors">
+                                    vacío
+                                </div>
+                            </div>
+                            <div class="flex flex-col items-center">
+                                <span class="text-xs font-bold mb-1">Paso 2</span>
+                                <div id="handSlot1" onclick="returnHandSlot(1)" class="w-full h-24 bg-white rounded-xl border-2 border-dashed border-[#78576B] flex flex-col items-center justify-center text-xs p-1 cursor-pointer font-bold text-[#400428] hover:bg-slate-50 transition-colors">
+                                    vacío
+                                </div>
+                            </div>
+                            <div class="flex flex-col items-center">
+                                <span class="text-xs font-bold mb-1">Paso 3</span>
+                                <div id="handSlot2" onclick="returnHandSlot(2)" class="w-full h-24 bg-white rounded-xl border-2 border-dashed border-[#78576B] flex flex-col items-center justify-center text-xs p-1 cursor-pointer font-bold text-[#400428] hover:bg-slate-50 transition-colors">
+                                    vacío
+                                </div>
+                            </div>
+                            <div class="flex flex-col items-center">
+                                <span class="text-xs font-bold mb-1">Paso 4</span>
+                                <div id="handSlot3" onclick="returnHandSlot(3)" class="w-full h-24 bg-white rounded-xl border-2 border-dashed border-[#78576B] flex flex-col items-center justify-center text-xs p-1 cursor-pointer font-bold text-[#400428] hover:bg-slate-50 transition-colors">
+                                    vacío
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Shuffled pictograms pool -->
+                        <div id="handPool" class="flex justify-center gap-3 flex-wrap mb-4 max-w-xl">
+                            <!-- Cards inserted dynamically -->
+                        </div>
+
+                        <div id="routineFeedback" class="mt-2 font-bold text-base min-h-[28px] text-[#400428]"></div>
+                        <button onclick="resetHandwashGame()" class="custom-btn text-xs px-4 py-2 mt-2">Reiniciar Orden</button>
+                    </div>
+                </div>
+
+                <div class="mt-6 text-center">
+                    <button onclick="navigateTo('menuScreen')" class="custom-btn px-6 py-3 text-base flex items-center justify-center gap-2 mx-auto">
+                        <i class="fas fa-th-large"></i> Regresar al Menú
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== 5. DISCAPACIDAD PSICOSOCIAL ==================== -->
+        <section id="psicosocialScreen" class="w-full hidden flex-col transition-all duration-300">
+            <div class="custom-box p-6 md:p-8 w-full">
+                <div class="flex flex-wrap items-center justify-between gap-4 mb-6 pb-4 border-b border-[#400428]/10">
+                    <div class="flex items-center gap-3">
+                        <div class="bg-[#78576B] text-white p-3 rounded-2xl">
+                            <i class="fas fa-heart-pulse text-2xl md:text-3xl"></i>
+                        </div>
+                        <h2 class="text-2xl md:text-3xl font-extrabold">Discapacidad Psicosocial</h2>
+                    </div>
+                    <button onclick="navigateTo('menuScreen')" class="custom-btn btn-secondary px-4 py-2 text-sm md:text-base flex items-center gap-2">
+                        <i class="fas fa-arrow-left"></i> Regresar
+                    </button>
+                </div>
+
+                <div class="bg-white/90 p-5 rounded-2xl mb-6 shadow-sm">
+                    <h3 class="font-bold text-lg mb-2 text-[#78576B]">¿Qué es?</h3>
+                    <p class="text-sm md:text-base leading-relaxed">
+                        A veces, las emociones de estas personas se sienten muy intensas, como si tuvieran una tormenta de sentimientos dentro que los hace sentir muy tristes, asustados o confundidos; cuando esto pasa, lo más importante es ser muy amables, escucharlos con mucho cariño y darles un espacio tranquilo para que se sientan seguros otra vez.
+                    </p>
+                </div>
+
+                <!-- Juego: Calma de Estímulos -->
+                <div class="bg-white p-4 md:p-6 rounded-2xl text-center shadow-sm">
+                    <span class="bg-[#78576B] text-white text-xs px-3 py-1 rounded-full uppercase tracking-wider font-bold">Juego Educativo</span>
+                    <h4 class="text-xl font-bold mt-2 mb-2">Calma de Estímulos</h4>
+                    
+                    <div class="bg-[#f4E196]/40 p-4 rounded-xl mb-4 text-left text-xs md:text-sm leading-relaxed">
+                        <strong>¿Cómo funciona el juego?</strong><br>
+                        Calma de Estímulos: El cerebro necesita mantenerse sereno. Esferas de estímulos ruidosos y de estrés caen rápidamente. Haz clic o presiona en los estímulos para disolverlos y restaurar la barra de calma de nuestro cerebro.
+                    </div>
+
+                    <div id="stimulusGame" class="flex flex-col items-center">
+                        
+                        <!-- Serenity gauge bar -->
+                        <div class="w-full max-w-md mb-3 text-left">
+                            <div class="flex justify-between text-xs font-bold mb-1">
+                                <span>BARRA DE CALMA DEL CEREBRO</span>
+                                <span id="calmPercentText">100%</span>
+                            </div>
+                            <div class="w-full h-5 bg-slate-200 rounded-full overflow-hidden p-0.5 border border-slate-300">
+                                <div id="calmProgressBar" class="h-full bg-emerald-500 rounded-full transition-all duration-300 w-full"></div>
+                            </div>
+                        </div>
+
+                        <!-- Falling stimulus canvas area -->
+                        <div id="stimulusArea" class="w-full max-w-md h-64 bg-slate-900 rounded-2xl relative overflow-hidden shadow-inner mb-4 border-2 border-slate-700">
+                            <!-- Spheres float dynamically -->
+                        </div>
+
+                        <div class="flex gap-3">
+                            <button onclick="startStimulusGame()" class="custom-btn px-6 py-2 text-sm">
+                                Iniciar / Reiniciar Juego
+                            </button>
+                        </div>
+
+                        <div id="stimulusFeedback" class="mt-3 font-bold text-sm min-h-[28px] text-[#400428]">
+                            Haz clic en las esferas de estímulo para disolverlas antes de que lleguen abajo.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-6 text-center">
+                    <button onclick="navigateTo('menuScreen')" class="custom-btn px-6 py-3 text-base flex items-center justify-center gap-2 mx-auto">
+                        <i class="fas fa-th-large"></i> Regresar al Menú
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== 6. DISCAPACIDAD MÚLTIPLE ==================== -->
+        <section id="multipleScreen" class="w-full hidden flex-col transition-all duration-300">
+            <div class="custom-box p-6 md:p-8 w-full">
+                <div class="flex flex-wrap items-center justify-between gap-4 mb-6 pb-4 border-b border-[#400428]/10">
+                    <div class="flex items-center gap-3">
+                        <div class="bg-[#78576B] text-white p-3 rounded-2xl">
+                            <i class="fas fa-hands-holding-circle text-2xl md:text-3xl"></i>
+                        </div>
+                        <h2 class="text-2xl md:text-3xl font-extrabold">Discapacidad Múltiple</h2>
+                    </div>
+                    <button onclick="navigateTo('menuScreen')" class="custom-btn btn-secondary px-4 py-2 text-sm md:text-base flex items-center gap-2">
+                        <i class="fas fa-arrow-left"></i> Regresar
+                    </button>
+                </div>
+
+                <div class="bg-white/90 p-5 rounded-2xl mb-6 shadow-sm">
+                    <h3 class="font-bold text-lg mb-2 text-[#78576B]">¿Qué es?</h3>
+                    <p class="text-sm md:text-base leading-relaxed">
+                        Esto pasa cuando una persona tiene más de una discapacidad al mismo tiempo, por ejemplo, que le cueste trabajo ver y también moverse; esto hace que su forma de conocer el mundo sea única y especial, por lo que necesitan que los demás seamos muy observadores para entender qué es lo que necesitan y encontrar juntos la mejor manera de jugar y aprender.
+                    </p>
+                </div>
+
+                <!-- Juego: Explorador Multisensorial -->
+                <div class="bg-white p-4 md:p-6 rounded-2xl text-center shadow-sm">
+                    <span class="bg-[#78576B] text-white text-xs px-3 py-1 rounded-full uppercase tracking-wider font-bold">Juego Educativo</span>
+                    <h4 class="text-xl font-bold mt-2 mb-2">Explorador Multisensorial (Causa y Efecto)</h4>
+                    
+                    <div class="bg-[#f4E196]/40 p-4 rounded-xl mb-4 text-left text-xs md:text-sm leading-relaxed">
+                        <strong>¿Cómo funciona el juego?</strong><br>
+                        Explorador Multisensorial: Presiona los activadores adaptados de alto contraste para generar respuestas inmediatas combinadas de luz, frecuencia sonora e ilustración de causa y efecto.
+                    </div>
+
+                    <div id="multipleGame" class="flex flex-col items-center">
+                        <div class="grid grid-cols-2 gap-4 w-full max-w-sm mb-4">
+                            <button onclick="triggerSensoryNode(1, '#EF4444', 261.63, 'Tono Grave - Frecuencia Roja')" class="h-24 rounded-2xl bg-red-500 text-white font-extrabold text-base shadow-sm active:scale-95 transition-all flex flex-col items-center justify-center border-4 border-white">
+                                <i class="fas fa-sun text-2xl mb-1"></i>
+                                <span>ACTIVADOR 1</span>
+                            </button>
+                            <button onclick="triggerSensoryNode(2, '#3B82F6', 329.63, 'Tono Medio - Frecuencia Azul')" class="h-24 rounded-2xl bg-blue-500 text-white font-extrabold text-base shadow-sm active:scale-95 transition-all flex flex-col items-center justify-center border-4 border-white">
+                                <i class="fas fa-water text-2xl mb-1"></i>
+                                <span>ACTIVADOR 2</span>
+                            </button>
+                            <button onclick="triggerSensoryNode(3, '#10B981', 392.00, 'Tono Armónico - Frecuencia Verde')" class="h-24 rounded-2xl bg-emerald-500 text-white font-extrabold text-base shadow-sm active:scale-95 transition-all flex flex-col items-center justify-center border-4 border-white">
+                                <i class="fas fa-leaf text-2xl mb-1"></i>
+                                <span>ACTIVADOR 3</span>
+                            </button>
+                            <button onclick="triggerSensoryNode(4, '#F59E0B', 523.25, 'Tono Agudo - Frecuencia Dorada')" class="h-24 rounded-2xl bg-amber-500 text-white font-extrabold text-base shadow-sm active:scale-95 transition-all flex flex-col items-center justify-center border-4 border-white">
+                                <i class="fas fa-star text-2xl mb-1"></i>
+                                <span>ACTIVADOR 4</span>
+                            </button>
+                        </div>
+
+                        <div id="multiCanvas" class="w-full max-w-sm h-20 bg-slate-900 rounded-xl flex items-center justify-center text-white font-bold text-sm shadow-inner transition-all duration-300 p-2 text-center">
+                            Presiona cualquiera de los activadores adaptados
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-6 text-center">
+                    <button onclick="navigateTo('menuScreen')" class="custom-btn px-6 py-3 text-base flex items-center justify-center gap-2 mx-auto">
+                        <i class="fas fa-th-large"></i> Regresar al Menú
+                    </button>
+                </div>
             </div>
         </section>
 
     </main>
 
     <!-- FOOTER -->
-    <footer class="w-full text-center py-4 text-xs font-semibold text-[#452C18] opacity-75 mt-8 border-t border-[#CC7254] max-w-4xl mx-auto">
-        &copy; 2026 Colores que enseñan - Promoviendo la inclusión escolar y familiar.
+    <footer class="max-w-4xl mx-auto w-full text-center mt-6 text-xs md:text-sm font-semibold text-[#400428]/80">
+        <div class="bg-[#f4E196] py-2 px-4 rounded-xl shadow-sm inline-block">
+            Diferentes formas de ver, sentir y aprender; un mismo mundo para compartir.
+        </div>
     </footer>
 
-    <!-- SCRIPT DE INTERACCIÓN -->
+    <!-- JAVASCRIPT LOGIC -->
     <script>
-        // Datos para la sección de discapacidades
-        const infoDiscapacidades = {
-            visual: {
-                titulo: "Discapacidad Visual 👁️",
-                descripcion: "La discapacidad visual se define como la pérdida parcial o total de la vista. Esto incluye a las personas ciegas (que no ven nada) y a personas con baja visión (que necesitan lentes especiales, lupas o tipografía más grande para poder leer).",
-                recomendacion: "Al hablar con un compañero con discapacidad visual, háblale directamente identificándote por tu nombre. No utilices gestos vagos como 'ahí' o 'allá', describe con precisión: 'a tu derecha', 'sobre la mesa'."
-            },
-            auditiva: {
-                titulo: "Discapacidad Auditiva 👂",
-                descripcion: "Es la pérdida total o parcial para percibir los sonidos. Las personas sordas se comunican principalmente de forma visual, utilizando la Lengua de Señas, gestos, lectura de labios o textos escritos.",
-                recomendacion: "Para comunicarte mejor, míralo siempre de frente al hablar, vocaliza de forma clara sin exagerar ni gritar, y si es necesario utiliza dibujos, señas naturales o apóyate escribiendo en un papel."
-            },
-            motriz: {
-                titulo: "Discapacidad Motriz ♿",
-                descripcion: "Es la dificultad o limitación que presentan algunas personas para moverse, mantener posturas o coordinar movimientos de su cuerpo. Puede deberse a factores de nacimiento o accidentes, y muchos utilizan sillas de ruedas, muletas o andadores.",
-                recomendacion: "Asegúrate de que los espacios de juego o estudio estén libres de obstáculos. Si vas a conversar largo rato con alguien en silla de ruedas, siéntate para estar a la misma altura de sus ojos."
-            },
-            intelectual: {
-                titulo: "Discapacidad Intelectual 🧠",
-                descripcion: "Se caracteriza por limitaciones en el funcionamiento intelectual general y en la adaptación a la vida cotidiana. Esto hace que algunas actividades de aprendizaje, comunicación o cuidado personal requieran un ritmo más calmado y apoyos específicos.",
-                recomendacion: "Explica las instrucciones de los juegos de manera sencilla, paso a paso. Ten paciencia y dales el tiempo necesario para responder y expresarse sin presiones."
-            }
-        };
+        let audioEnabled = true;
+        let audioCtx = null;
 
-        // Preguntas del mini-juego de empatía e inclusión
-        const bancoPreguntas = [
-            {
-                pregunta: "Si juegas con un amigo que tiene discapacidad visual, ¿cuál es la mejor manera de ayudarle a orientarse?",
-                opciones: [
-                    { texto: "Describir el lugar usando referencias claras como 'a tu derecha' o 'detrás de ti'.", correcta: true },
-                    { texto: "Llevarlo del brazo a todos lados sin avisarle para que no se caiga.", correcta: false },
-                    { texto: "Apuntar con el dedo y decirle: 'camina por allá'.", correcta: false }
-                ]
-            },
-            {
-                pregunta: "Estás explicando las reglas de un juego a un compañero con discapacidad intelectual, ¿cómo debes hacerlo?",
-                opciones: [
-                    { texto: "Hablar muy rápido para no aburrir a los demás compañeros.", correcta: false },
-                    { texto: "Dar explicaciones sencillas, paso a paso, usando ejemplos claros y con paciencia.", correcta: true },
-                    { texto: "Hacer el juego directamente sin explicarle para evitar que se confunda.", correcta: false }
-                ]
-            },
-            {
-                pregunta: "Un nuevo amigo que usa silla de ruedas quiere jugar al recreo con el grupo. ¿Qué es lo mejor que podemos hacer?",
-                opciones: [
-                    { texto: "Decirle que no puede jugar porque el patio tiene escaleras.", correcta: false },
-                    { texto: "Elegir un juego de mesa o una actividad donde todos podamos participar juntos en igualdad.", correcta: true },
-                    { texto: "Dejarlo mirando el juego desde un lado para que no se canse.", correcta: false }
-                ]
+        function initAudio() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
             }
+        }
+
+        function playTone(freq = 440, type = 'sine', duration = 0.2) {
+            if (!audioEnabled) return;
+            try {
+                initAudio();
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = type;
+                osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+                gain.gain.setValueAtTime(0.12, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start();
+                osc.stop(audioCtx.currentTime + duration);
+            } catch(e) {
+                console.log("Notificación de audio", e);
+            }
+        }
+
+        function toggleAudio() {
+            audioEnabled = !audioEnabled;
+            document.getElementById('soundStatusText').innerText = audioEnabled ? "Sonido: ACTIVO" : "Sonido: INACTIVO";
+            if(audioEnabled) playTone(523, 'sine', 0.15);
+        }
+
+        function navigateTo(screenId) {
+            playTone(600, 'triangle', 0.1);
+            const screens = ['welcomeScreen', 'menuScreen', 'auditivaScreen', 'visualScreen', 'motrizScreen', 'intelectualScreen', 'psicosocialScreen', 'multipleScreen'];
+            
+            screens.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) {
+                    if (id === screenId) {
+                        el.classList.remove('hidden');
+                        el.classList.add('flex');
+                    } else {
+                        el.classList.add('hidden');
+                        el.classList.remove('flex');
+                    }
+                }
+            });
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            if (screenId === 'motrizScreen') startGaugeGame();
+            else stopGaugeGame();
+
+            if (screenId === 'visualScreen') resetMazeGame();
+            if (screenId === 'intelectualScreen') resetHandwashGame();
+            if (screenId === 'psicosocialScreen') startStimulusGame();
+        }
+
+        function triggerLogoUpload() {
+            document.getElementById('logoInput').click();
+        }
+
+        function handleLogoUpload(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const customLogo = document.getElementById('customLogo');
+                    const placeholder = document.getElementById('logoPlaceholder');
+                    customLogo.src = e.target.result;
+                    customLogo.classList.remove('hidden');
+                    placeholder.classList.add('hidden');
+                    playTone(800, 'sine', 0.2);
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        /* 1. JUEGO AUDITIVA: Ritmo y Luz Visual */
+        let lightSequence = [];
+        let userLightStep = 0;
+        const colorLabels = ['TRIÁNGULO', 'CUADRADO', 'CÍRCULO', 'ROMBO'];
+        const colorHexes = ['#EF4444', '#3B82F6', '#10B981', '#F59E0B'];
+
+        function startLightSequence() {
+            lightSequence = [];
+            for (let i = 0; i < 3; i++) {
+                lightSequence.push(Math.floor(Math.random() * 4));
+            }
+            userLightStep = 0;
+            document.getElementById('lightStatus').innerText = "Observa la secuencia de luces y formas...";
+            playLightSequence(0);
+        }
+
+        function playLightSequence(index) {
+            if (index >= lightSequence.length) {
+                document.getElementById('lightStatus').innerText = "Tu turno: Repite la secuencia haciendo clic en los paneles.";
+                const display = document.getElementById('lightDisplay');
+                display.style.backgroundColor = "#0f172a";
+                display.innerText = "TU TURNO";
+                return;
+            }
+
+            const colorIdx = lightSequence[index];
+            const display = document.getElementById('lightDisplay');
+            display.style.backgroundColor = colorHexes[colorIdx];
+            display.innerText = colorLabels[colorIdx];
+            playTone(300 + (colorIdx * 120), 'sine', 0.4);
+
+            setTimeout(() => {
+                display.style.backgroundColor = "#0f172a";
+                display.innerText = "...";
+                setTimeout(() => {
+                    playLightSequence(index + 1);
+                }, 300);
+            }, 600);
+        }
+
+        function pressColor(index) {
+            if (lightSequence.length === 0) return;
+
+            playTone(300 + (index * 120), 'sine', 0.2);
+            const display = document.getElementById('lightDisplay');
+            display.style.backgroundColor = colorHexes[index];
+            display.innerText = colorLabels[index];
+
+            setTimeout(() => {
+                display.style.backgroundColor = "#0f172a";
+                display.innerText = "TU TURNO";
+            }, 300);
+
+            if (index === lightSequence[userLightStep]) {
+                userLightStep++;
+                if (userLightStep === lightSequence.length) {
+                    playTone(880, 'sine', 0.4);
+                    document.getElementById('lightStatus').innerText = "¡Excelente! Secuencia completada con éxito.";
+                    lightSequence = [];
+                }
+            } else {
+                playTone(200, 'sawtooth', 0.3);
+                document.getElementById('lightStatus').innerText = "Secuencia incorrecta. Presiona 'Iniciar Secuencia Visual' para intentar de nuevo.";
+                lightSequence = [];
+            }
+        }
+
+        /* 2. JUEGO VISUAL: Eco-Localización (Laberinto a Oscuras) */
+        const mazeSize = 7;
+        let playerPos = { x: 0, y: 0 };
+        const exitPos = { x: 6, y: 6 };
+        let mazeGrid = [];
+        let radarPulseActive = false;
+
+        function resetMazeGame() {
+            playerPos = { x: 0, y: 0 };
+            // Simple grid layout with obstacles
+            mazeGrid = [
+                [0, 0, 1, 0, 0, 0, 0],
+                [1, 0, 1, 0, 1, 1, 0],
+                [0, 0, 0, 0, 0, 1, 0],
+                [0, 1, 1, 1, 0, 1, 0],
+                [0, 0, 0, 1, 0, 0, 0],
+                [1, 1, 0, 1, 1, 1, 0],
+                [0, 0, 0, 0, 0, 0, 0]
+            ];
+            radarPulseActive = false;
+            renderMaze();
+            document.getElementById('radarFeedback').innerText = "Lanza un pulso de eco o usa tu bastón para orientarte hacia la salida.";
+        }
+
+        function triggerRadarPulse() {
+            radarPulseActive = true;
+            playTone(700, 'sine', 0.5);
+            renderMaze();
+            document.getElementById('radarFeedback').innerText = "Pulso de eco activo: Los muros son visibles temporalmente.";
+            setTimeout(() => {
+                radarPulseActive = false;
+                renderMaze();
+                document.getElementById('radarFeedback').innerText = "Eco finalizado. Muévete orientándote por el bastón o lanza otro pulso.";
+            }, 2000);
+        }
+
+        function movePlayer(dx, dy) {
+            const newX = playerPos.x + dx;
+            const newY = playerPos.y + dy;
+
+            if (newX >= 0 && newX < mazeSize && newY >= 0 && newY < mazeSize) {
+                if (mazeGrid[newY][newX] === 1) {
+                    playTone(200, 'square', 0.15);
+                    document.getElementById('radarFeedback').innerText = "El bastón detectó un muro en esa dirección.";
+                    return;
+                }
+                playerPos.x = newX;
+                playerPos.y = newY;
+                playTone(500, 'sine', 0.1);
+
+                if (playerPos.x === exitPos.x && playerPos.y === exitPos.y) {
+                    playTone(880, 'sine', 0.5);
+                    document.getElementById('radarFeedback').innerText = "¡Encontraste la salida del laberinto exitosamente!";
+                } else {
+                    const dist = Math.abs(playerPos.x - exitPos.x) + Math.abs(playerPos.y - exitPos.y);
+                    document.getElementById('radarFeedback').innerText = `Avanzaste. Distancia estimada a la salida: ${dist} pasos.`;
+                }
+                renderMaze();
+            }
+        }
+
+        function renderMaze() {
+            const gridEl = document.getElementById('mazeGrid');
+            if (!gridEl) return;
+            gridEl.innerHTML = '';
+
+            for (let y = 0; y < mazeSize; y++) {
+                for (let x = 0; x < mazeSize; x++) {
+                    const cell = document.createElement('div');
+                    cell.className = "w-full h-full rounded-md flex items-center justify-center text-xs font-bold transition-all duration-200 ";
+
+                    const isPlayer = (x === playerPos.x && y === playerPos.y);
+                    const isExit = (x === exitPos.x && y === exitPos.y);
+                    const isAdjacent = Math.abs(x - playerPos.x) <= 1 && Math.abs(y - playerPos.y) <= 1;
+                    const isWall = (mazeGrid[y][x] === 1);
+
+                    if (isPlayer) {
+                        cell.className += "bg-amber-400 text-slate-900 shadow-md";
+                        cell.innerText = "P";
+                    } else if (isExit && (isAdjacent || radarPulseActive)) {
+                        cell.className += "bg-emerald-400 text-slate-900 font-extrabold animate-pulse";
+                        cell.innerText = "FIN";
+                    } else if (isWall) {
+                        if (radarPulseActive || isAdjacent) {
+                            cell.className += "bg-[#78576B] text-white";
+                            cell.innerText = "█";
+                        } else {
+                            cell.className += "bg-slate-900";
+                        }
+                    } else {
+                        if (radarPulseActive || isAdjacent) {
+                            cell.className += "bg-slate-800 text-slate-500";
+                            cell.innerText = "•";
+                        } else {
+                            cell.className += "bg-slate-900";
+                        }
+                    }
+                    gridEl.appendChild(cell);
+                }
+            }
+        }
+
+        /* 3. JUEGO MOTRIZ: Acceso por Pulsador Único con Zona Verde Dinámica */
+        let gaugeAnimId = null;
+        let pointerAngle = 0;
+        let switchScore = 0;
+        let targetStart = 45; 
+        let targetEnd = 105;
+        const targetArcSpan = 60; // Ancho del arco verde en grados
+
+        function randomizeTargetZone() {
+            // Genera un ángulo aleatorio entre 10 y 290 grados
+            targetStart = Math.floor(Math.random() * 280) + 10;
+            targetEnd = targetStart + targetArcSpan;
+        }
+
+        function startGaugeGame() {
+            stopGaugeGame();
+            randomizeTargetZone();
+            animateGauge();
+        }
+
+        function stopGaugeGame() {
+            if (gaugeAnimId) {
+                cancelAnimationFrame(gaugeAnimId);
+                gaugeAnimId = null;
+            }
+        }
+
+        function animateGauge() {
+            pointerAngle = (pointerAngle + 2.5) % 360;
+            drawGauge();
+            gaugeAnimId = requestAnimationFrame(animateGauge);
+        }
+
+        function drawGauge() {
+            const canvas = document.getElementById('gaugeCanvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const cx = canvas.width / 2;
+            const cy = canvas.height / 2;
+            const radius = 80;
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Círculo de fondo oscuro
+            ctx.beginPath();
+            ctx.arc(cx, cy, radius, 0, Math.PI * 2);
+            ctx.fillStyle = "#1e293b";
+            ctx.fill();
+
+            // Zona Verde Dinámica
+            ctx.beginPath();
+            const startRad = (targetStart * Math.PI) / 180;
+            const endRad = (targetEnd * Math.PI) / 180;
+            ctx.arc(cx, cy, radius, startRad, endRad);
+            ctx.lineTo(cx, cy);
+            ctx.fillStyle = "#10b981";
+            ctx.fill();
+
+            // Aguja Giratoria
+            ctx.save();
+            ctx.translate(cx, cy);
+            ctx.rotate((pointerAngle * Math.PI) / 180);
+            ctx.beginPath();
+            ctx.moveTo(0, 0);
+            ctx.lineTo(radius - 10, 0);
+            ctx.strokeStyle = "#f59e0b";
+            ctx.lineWidth = 6;
+            ctx.lineCap = "round";
+            ctx.stroke();
+            ctx.restore();
+
+            // Punto Central
+            ctx.beginPath();
+            ctx.arc(cx, cy, 10, 0, Math.PI * 2);
+            ctx.fillStyle = "#ffffff";
+            ctx.fill();
+        }
+
+        function triggerSingleSwitchAction() {
+            const currentPointer = pointerAngle % 360;
+
+            if (currentPointer >= targetStart && currentPointer <= targetEnd) {
+                playTone(880, 'sine', 0.3);
+                switchScore += 10;
+                document.getElementById('switchScoreText').innerText = switchScore;
+                document.getElementById('switchFeedback').innerText = "¡Excelente precisión! Acertaste en la zona verde (+10 puntos). ¡La zona verde cambió de lugar!";
+                randomizeTargetZone(); // La zona verde cambia de dirección tras acertar
+            } else {
+                playTone(220, 'square', 0.2);
+                document.getElementById('switchFeedback').innerText = "Fuera de zona. Intenta pulsar justo cuando la aguja pase por la franja verde.";
+            }
+        }
+
+        window.addEventListener('keydown', (e) => {
+            if (e.code === 'Space') {
+                const motrizSec = document.getElementById('motrizScreen');
+                if (motrizSec && !motrizSec.classList.contains('hidden')) {
+                    e.preventDefault();
+                    triggerSingleSwitchAction();
+                }
+            }
+        });
+
+        /* 4. JUEGO INTELECTUAL: Higiene Saludable */
+        const handwashTasks = [
+            { id: 1, name: "1. Mojar las Manos" },
+            { id: 2, name: "2. Aplicar Jabón" },
+            { id: 3, name: "3. Frotar y Enjuagar" },
+            { id: 4, name: "4. Secar con Toalla" }
         ];
+        let handwashSlots = [null, null, null, null];
 
-        let preguntaActual = 0;
-
-        // Función para cambiar de pantalla/sección de forma fluida
-        function cambiarSeccion(idSeccion) {
-            // Ocultar todas las secciones
-            document.getElementById('seccion-portada').classList.add('hidden');
-            document.getElementById('seccion-presentacion').classList.add('hidden');
-            document.getElementById('seccion-discapacidades').classList.add('hidden');
-            document.getElementById('seccion-juegos').classList.add('hidden');
-
-            // Mostrar la sección seleccionada
-            document.getElementById(idSeccion).classList.remove('hidden');
-
-            // Si entra a la sección de juegos, reiniciar o cargar el juego
-            if (idSeccion === 'seccion-juegos') {
-                preguntaActual = 0;
-                cargarPregunta();
+        function resetHandwashGame() {
+            handwashSlots = [null, null, null, null];
+            for (let i = 0; i < 4; i++) {
+                const slotEl = document.getElementById(`handSlot${i}`);
+                if (slotEl) slotEl.innerText = "vacío";
             }
-        }
+            document.getElementById('routineFeedback').innerText = "Toca los pictogramas abajo para ordenarlos en el lavado de manos.";
 
-        // Función para interactuar con las discapacidades
-        function mostrarInfoDiscapacidad(clave) {
-            const info = infoDiscapacidades[clave];
-            if (info) {
-                document.getElementById('info-titulo').innerText = info.titulo;
-                document.getElementById('info-descripcion').innerText = info.descripcion;
-                document.getElementById('info-recomendacion').innerText = info.recomendacion;
-                
-                // Mostrar panel con animación
-                const panel = document.getElementById('panel-info');
-                panel.classList.remove('hidden');
-                panel.scrollIntoView({ behavior: 'smooth' });
-            }
-        }
+            const pool = document.getElementById('handPool');
+            pool.innerHTML = "";
 
-        // Cargar pregunta del juego
-        function cargarPregunta() {
-            const datosPregunta = bancoPreguntas[preguntaActual];
-            document.getElementById('juego-nivel').innerText = `Caso ${preguntaActual + 1} de ${bancoPreguntas.length}`;
-            document.getElementById('juego-pregunta').innerText = datosPregunta.pregunta;
-
-            const contenedorOpciones = document.getElementById('juego-opciones');
-            contenedorOpciones.innerHTML = '';
-
-            const feedback = document.getElementById('juego-feedback');
-            feedback.classList.add('hidden');
-            document.getElementById('btn-siguiente-juego').classList.add('hidden');
-
-            datosPregunta.opciones.forEach((opcion, index) => {
-                const boton = document.createElement('button');
-                boton.className = "w-full text-left p-4 rounded-xl border-2 border-[#452C18] bg-white hover:bg-[#F4FCB8] font-semibold text-[#452C18] transition duration-200";
-                boton.innerText = opcion.texto;
-                boton.onclick = () => verificarRespuesta(opcion.correcta, boton);
-                contenedorOpciones.appendChild(boton);
+            const shuffled = [...handwashTasks].sort(() => Math.random() - 0.5);
+            shuffled.forEach(task => {
+                const btn = document.createElement('button');
+                btn.id = `handTaskCard_${task.id}`;
+                btn.className = "custom-btn px-4 py-3 text-xs md:text-sm font-bold border-2 border-white";
+                btn.innerText = task.name;
+                btn.onclick = () => selectHandTask(task);
+                pool.appendChild(btn);
             });
         }
 
-        // Verificar respuesta seleccionada en el juego
-        function verificarRespuesta(esCorrecta, botonSeleccionado) {
-            const feedback = document.getElementById('juego-feedback');
-            feedback.classList.remove('hidden');
+        function selectHandTask(task) {
+            const emptyIdx = handwashSlots.findIndex(s => s === null);
+            if (emptyIdx !== -1) {
+                playTone(450 + (emptyIdx * 100), 'sine', 0.15);
+                handwashSlots[emptyIdx] = task;
 
-            // Deshabilitar todas las opciones tras responder
-            const opcionesBotones = document.getElementById('juego-opciones').querySelectorAll('button');
-            opcionesBotones.forEach(btn => btn.disabled = true);
+                const slotEl = document.getElementById(`handSlot${emptyIdx}`);
+                slotEl.innerText = task.name;
 
-            if (esCorrecta) {
-                botonSeleccionado.className = "w-full text-left p-4 rounded-xl border-4 border-[#95A868] bg-[#eef6dd] font-bold text-[#452C18]";
-                feedback.className = "mt-6 p-4 rounded-xl font-bold text-center bg-[#95A868] text-white";
-                feedback.innerText = "¡Excelente respuesta! Así promovemos la verdadera empatía e inclusión. 🌟";
-                document.getElementById('btn-siguiente-juego').classList.remove('hidden');
-            } else {
-                botonSeleccionado.className = "w-full text-left p-4 rounded-xl border-4 border-[#CC7254] bg-[#fdf2ee] font-bold text-[#452C18]";
-                feedback.className = "mt-6 p-4 rounded-xl font-bold text-center bg-[#CC7254] text-white";
-                feedback.innerText = "¡Inténtalo de nuevo! Piensa en cómo te gustaría que te incluyeran si estuvieras en su lugar.";
-                
-                // Permitir reintentar habilitando los botones después de un instante
-                setTimeout(() => {
-                    opcionesBotones.forEach(btn => btn.disabled = false);
-                }, 1000);
+                const cardEl = document.getElementById(`handTaskCard_${task.id}`);
+                if (cardEl) cardEl.classList.add('hidden');
+
+                if (!handwashSlots.includes(null)) {
+                    checkHandwashOrder();
+                }
             }
         }
 
-        // Pasar a la siguiente pregunta del juego
-        function siguientePregunta() {
-            preguntaActual++;
-            if (preguntaActual < bancoPreguntas.length) {
-                cargarPregunta();
-            } else {
-                // Fin del juego
-                const contenedorOpciones = document.getElementById('juego-opciones');
-                contenedorOpciones.innerHTML = '';
-                document.getElementById('juego-pregunta').innerText = "¡Felicidades! Has completado el desafío de empatía. Ahora comprendes mucho mejor cómo construir un mundo inclusivo.";
-                document.getElementById('juego-feedback').className = "mt-6 p-6 rounded-xl font-bold text-center bg-[#95A868] text-white text-lg";
-                document.getElementById('juego-feedback').innerHTML = "¡Eres un gran campeón de la inclusión! 🏆👫🌈";
-                document.getElementById('btn-siguiente-juego').classList.add('hidden');
+        function returnHandSlot(slotIdx) {
+            const task = handwashSlots[slotIdx];
+            if (task) {
+                playTone(300, 'triangle', 0.1);
+                handwashSlots[slotIdx] = null;
+                document.getElementById(`handSlot${slotIdx}`).innerText = "vacío";
+
+                const cardEl = document.getElementById(`handTaskCard_${task.id}`);
+                if (cardEl) cardEl.classList.remove('hidden');
+
+                document.getElementById('routineFeedback').innerText = "Pictograma devuelto. Puedes elegir otro.";
             }
+        }
+
+        function checkHandwashOrder() {
+            if (handwashSlots[0].id === 1 && handwashSlots[1].id === 2 && handwashSlots[2].id === 3 && handwashSlots[3].id === 4) {
+                playTone(880, 'sine', 0.4);
+                document.getElementById('routineFeedback').innerText = "¡Excelente! Ordenaste la secuencia de higiene correctamente.";
+            } else {
+                playTone(220, 'square', 0.25);
+                document.getElementById('routineFeedback').innerText = "Revisa el orden: 1. Mojar, 2. Enjabonar, 3. Frotar/Enjuagar, 4. Secar. Haz clic en un recuadro para devolverlo.";
+            }
+        }
+
+        /* 5. JUEGO PSICOSOCIAL: Calma de Estímulos */
+        let calmInterval = null;
+        let calmLevel = 100;
+
+        function startStimulusGame() {
+            stopStimulusGame();
+            calmLevel = 100;
+            updateCalmBar();
+            const area = document.getElementById('stimulusArea');
+            if (area) area.innerHTML = '';
+            document.getElementById('stimulusFeedback').innerText = "Disuelve las esferas de estímulos ruidosos para mantener la calma del cerebro.";
+
+            calmInterval = setInterval(() => {
+                spawnStimulusSphere();
+                calmLevel = Math.max(0, calmLevel - 2);
+                updateCalmBar();
+            }, 1400);
+        }
+
+        function stopStimulusGame() {
+            if (calmInterval) {
+                clearInterval(calmInterval);
+                calmInterval = null;
+            }
+        }
+
+        function updateCalmBar() {
+            const bar = document.getElementById('calmProgressBar');
+            const text = document.getElementById('calmPercentText');
+            if (bar && text) {
+                bar.style.width = `${calmLevel}%`;
+                text.innerText = `${calmLevel}%`;
+                if (calmLevel > 60) bar.className = "h-full bg-emerald-500 rounded-full transition-all duration-300";
+                else if (calmLevel > 30) bar.className = "h-full bg-amber-500 rounded-full transition-all duration-300";
+                else bar.className = "h-full bg-red-500 rounded-full transition-all duration-300";
+            }
+        }
+
+        function spawnStimulusSphere() {
+            const area = document.getElementById('stimulusArea');
+            if (!area) return;
+
+            const sphere = document.createElement('div');
+            const labels = ['RUIDO', 'LUCES', 'ESTRÉS', 'PRISA', 'BULANGA'];
+            const randomLabel = labels[Math.floor(Math.random() * labels.length)];
+            const randomX = Math.floor(Math.random() * 70) + 10;
+
+            sphere.className = "absolute px-3 py-2 bg-red-500 text-white rounded-full font-extrabold text-xs shadow-lg cursor-pointer animate-bounce transition-transform active:scale-75 border-2 border-white";
+            sphere.style.left = `${randomX}%`;
+            sphere.style.top = `${Math.floor(Math.random() * 60) + 10}%`;
+            sphere.innerText = randomLabel;
+
+            sphere.onclick = () => {
+                playTone(700, 'sine', 0.15);
+                calmLevel = Math.min(100, calmLevel + 12);
+                updateCalmBar();
+                sphere.remove();
+                document.getElementById('stimulusFeedback').innerText = "¡Estímulo disuelto! Se restauró la barra de calma del cerebro.";
+            };
+
+            area.appendChild(sphere);
+
+            setTimeout(() => {
+                if (sphere.parentNode) {
+                    sphere.remove();
+                }
+            }, 3000);
+        }
+
+        /* 6. JUEGO MÚLTIPLE: Explorador Multisensorial */
+        function triggerSensoryNode(id, hexColor, freq, description) {
+            playTone(freq, 'sine', 0.4);
+            const canvas = document.getElementById('multiCanvas');
+            canvas.style.backgroundColor = hexColor;
+            canvas.innerText = `Respuesta Multisensorial Adaptada: ${description}`;
         }
     </script>
 </body>
