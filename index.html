@@ -1,9 +1,10 @@
 
+
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Colores que enseñan</title>
+    <title>Colores que enseñan - Ritmo y Luz Visual 10 Niveles</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome Icons -->
@@ -26,7 +27,7 @@
             min-height: 100vh;
         }
 
-        /* Content containers without purple or dark borders */
+        /* Custom containers */
         .custom-box {
             background-color: var(--box-color);
             border-radius: 24px;
@@ -62,6 +63,29 @@
             color: var(--text-color);
         }
 
+        /* Level badge styles */
+        .level-badge {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .level-badge.active {
+            transform: scale(1.15);
+            box-shadow: 0 0 12px rgba(245, 158, 11, 0.8);
+        }
+
+        /* Pulse glow animation for active color tiles */
+        @keyframes flashGlow {
+            0% { transform: scale(1); filter: brightness(1); }
+            50% { transform: scale(1.04); filter: brightness(1.4); }
+            100% { transform: scale(1); filter: brightness(1); }
+        }
+
+        .tile-active {
+            animation: flashGlow 0.3s ease-in-out;
+            border-color: #ffffff !important;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.9) !important;
+        }
+
         /* Custom scrollbar */
         ::-webkit-scrollbar {
             width: 10px;
@@ -78,9 +102,12 @@
 <body class="p-4 md:p-8 flex flex-col justify-between min-h-screen">
 
     <header class="max-w-4xl mx-auto w-full text-center mb-4">
-        <div class="flex items-center justify-end">
+        <div class="flex items-center justify-between">
+            <div class="text-xs md:text-sm font-bold bg-white/70 px-4 py-2 rounded-xl text-[#400428] shadow-sm">
+                <i class="fas fa-gamepad text-[#78576B] mr-1"></i> Aprendizaje Inclusivo
+            </div>
             <button id="soundToggleBtn" onclick="toggleAudio()" class="custom-btn text-sm px-4 py-2 flex items-center gap-2">
-                <i class="fas fa-volume-up"></i> <span id="soundStatusText">Sonido: ACTIVO</span>
+                <i class="fas fa-volume-up" id="soundIcon"></i> <span id="soundStatusText">Sonido: ACTIVO</span>
             </button>
         </div>
     </header>
@@ -92,11 +119,13 @@
             <div class="custom-box p-6 md:p-10 w-full text-center flex flex-col items-center">
                 
                 <!-- ESPACIO PARA LOGO -->
-                <img src ="Logo_Colen.png" width=40%""> 
+                <div class="mb-4 flex justify-center">
+                    <img src="Logo_Colen.png" alt="Logo Colen" class="w-48 md:w-64 max-w-full h-auto object-contain drop-shadow-md" onerror="this.onerror=null; this.src='https://placehold.co/250x100/78576B/ffffff?text=Colores+Que+Ense%C3%B1an';">
+                </div>
 
                 <!-- TEXTO DE BIENVENIDA -->
                 <h1 class="text-3xl md:text-5xl font-extrabold mb-4 text-[#400428]">
-                    ¡Bienvenidos a colores que enseñan!
+                    ¡Bienvenidos a Colores que Enseñan!
                 </h1>
 
                 <!-- ESPACIO DE TEXTO EDITABLE / INFORMATIVO -->
@@ -126,33 +155,34 @@
                 <!-- GRID DE 6 BOTONES -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mb-8">
                     
-                    <button onclick="navigateTo('auditivaScreen')" class="custom-btn p-5 flex flex-col items-center justify-center text-center gap-3 text-lg md:text-xl min-h-[130px]">
-                        <i class="fas fa-ear-deaf text-3xl md:text-4xl"></i>
+                    <button onclick="navigateTo('auditivaScreen')" class="custom-btn p-5 flex flex-col items-center justify-center text-center gap-3 text-lg md:text-xl min-h-[130px] relative overflow-hidden group">
+                        <span class="absolute top-2 right-2 bg-amber-400 text-[#400428] text-xs font-black px-2 py-0.5 rounded-full shadow-sm">10 Niveles</span>
+                        <i class="fas fa-ear-deaf text-3xl md:text-4xl group-hover:scale-110 transition-transform"></i>
                         <span>Discapacidad Auditiva</span>
                     </button>
 
-                    <button onclick="navigateTo('visualScreen')" class="custom-btn p-5 flex flex-col items-center justify-center text-center gap-3 text-lg md:text-xl min-h-[130px]">
-                        <i class="fas fa-eye-low-vision text-3xl md:text-4xl"></i>
+                    <button onclick="navigateTo('visualScreen')" class="custom-btn p-5 flex flex-col items-center justify-center text-center gap-3 text-lg md:text-xl min-h-[130px] group">
+                        <i class="fas fa-eye-low-vision text-3xl md:text-4xl group-hover:scale-110 transition-transform"></i>
                         <span>Discapacidad Visual</span>
                     </button>
 
-                    <button onclick="navigateTo('motrizScreen')" class="custom-btn p-5 flex flex-col items-center justify-center text-center gap-3 text-lg md:text-xl min-h-[130px]">
-                        <i class="fas fa-wheelchair text-3xl md:text-4xl"></i>
+                    <button onclick="navigateTo('motrizScreen')" class="custom-btn p-5 flex flex-col items-center justify-center text-center gap-3 text-lg md:text-xl min-h-[130px] group">
+                        <i class="fas fa-wheelchair text-3xl md:text-4xl group-hover:scale-110 transition-transform"></i>
                         <span>Discapacidad Motriz</span>
                     </button>
 
-                    <button onclick="navigateTo('intelectualScreen')" class="custom-btn p-5 flex flex-col items-center justify-center text-center gap-3 text-lg md:text-xl min-h-[130px]">
-                        <i class="fas fa-brain text-3xl md:text-4xl"></i>
+                    <button onclick="navigateTo('intelectualScreen')" class="custom-btn p-5 flex flex-col items-center justify-center text-center gap-3 text-lg md:text-xl min-h-[130px] group">
+                        <i class="fas fa-brain text-3xl md:text-4xl group-hover:scale-110 transition-transform"></i>
                         <span>Discapacidad Intelectual</span>
                     </button>
 
-                    <button onclick="navigateTo('psicosocialScreen')" class="custom-btn p-5 flex flex-col items-center justify-center text-center gap-3 text-lg md:text-xl min-h-[130px]">
-                        <i class="fas fa-heart-pulse text-3xl md:text-4xl"></i>
+                    <button onclick="navigateTo('psicosocialScreen')" class="custom-btn p-5 flex flex-col items-center justify-center text-center gap-3 text-lg md:text-xl min-h-[130px] group">
+                        <i class="fas fa-heart-pulse text-3xl md:text-4xl group-hover:scale-110 transition-transform"></i>
                         <span>Discapacidad Psicosocial</span>
                     </button>
 
-                    <button onclick="navigateTo('multipleScreen')" class="custom-btn p-5 flex flex-col items-center justify-center text-center gap-3 text-lg md:text-xl min-h-[130px]">
-                        <i class="fas fa-hands-holding-circle text-3xl md:text-4xl"></i>
+                    <button onclick="navigateTo('multipleScreen')" class="custom-btn p-5 flex flex-col items-center justify-center text-center gap-3 text-lg md:text-xl min-h-[130px] group">
+                        <i class="fas fa-hands-holding-circle text-3xl md:text-4xl group-hover:scale-110 transition-transform"></i>
                         <span>Discapacidad Múltiple</span>
                     </button>
 
@@ -174,7 +204,10 @@
                         <div class="bg-[#78576B] text-white p-3 rounded-2xl">
                             <i class="fas fa-ear-deaf text-2xl md:text-3xl"></i>
                         </div>
-                        <h2 class="text-2xl md:text-3xl font-extrabold">Discapacidad Auditiva</h2>
+                        <div>
+                            <h2 class="text-2xl md:text-3xl font-extrabold">Discapacidad Auditiva</h2>
+                            <p class="text-xs text-[#78576B] font-bold">Inclusión a través de estímulos visuales</p>
+                        </div>
                     </div>
                     <button onclick="navigateTo('menuScreen')" class="custom-btn btn-secondary px-4 py-2 text-sm md:text-base flex items-center gap-2">
                         <i class="fas fa-arrow-left"></i> Regresar
@@ -188,47 +221,78 @@
                     </p>
                 </div>
 
-                <!-- Juego: Ritmo y Luz Visual -->
-                <div class="bg-white p-4 md:p-6 rounded-2xl text-center shadow-sm">
-                    <span class="bg-[#78576B] text-white text-xs px-3 py-1 rounded-full uppercase tracking-wider font-bold">Juego Educativo</span>
-                    <h4 class="text-xl font-bold mt-2 mb-2">Ritmo y Luz Visual</h4>
+                <!-- Juego: Ritmo y Luz Visual (MODIFICADO A 10 NIVELES) -->
+                <div class="bg-white p-4 md:p-6 rounded-2xl text-center shadow-sm relative overflow-hidden">
+                    <div class="flex items-center justify-between flex-wrap gap-2 mb-3">
+                        <span class="bg-[#78576B] text-white text-xs px-3 py-1 rounded-full uppercase tracking-wider font-bold">Juego Educativo • 10 Niveles</span>
+                        <div class="flex items-center gap-2 text-xs font-bold text-[#400428] bg-[#f4E196]/80 px-3 py-1 rounded-full">
+                            <i class="fas fa-trophy text-amber-600"></i>
+                            <span>Récord: Nivel <span id="maxLevelText">1</span>/10</span>
+                        </div>
+                    </div>
+                    
+                    <h4 class="text-2xl font-black mt-1 mb-2 text-[#400428]">Ritmo y Luz Visual</h4>
                     
                     <div class="bg-[#f4E196]/40 p-4 rounded-xl mb-4 text-left text-xs md:text-sm leading-relaxed">
                         <strong>¿Cómo funciona el juego?</strong><br>
-                        Ritmo y Luz Visual: En lugar de guiarte por tonos audibles, este juego se basa únicamente en un patrón rítmico visual. Cada color tiene un símbolo geométrico de alto contraste para mejorar la legibilidad. Observa la secuencia de destellos de colores y repítela haciendo clic en los paneles.
+                        En este juego, la música y los sonidos se convierten en <strong>luz, ritmo visual y formas geométricas</strong>. Supera los <strong>10 niveles progresivos</strong>: cada nivel añade un destello más a la secuencia y acelera el ritmo. Observa bien los paneles iluminados y repite el patrón en el orden correcto.
+                    </div>
+
+                    <!-- BARRA DE SEGUIMIENTO DE 10 NIVELES -->
+                    <div class="w-full max-w-md mx-auto mb-5 bg-slate-100 p-3 rounded-2xl border border-slate-200">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-xs font-bold text-[#400428] uppercase tracking-wider">Progreso de Niveles:</span>
+                            <span class="text-xs font-extrabold text-[#78576B] bg-white px-2 py-0.5 rounded-md shadow-xs" id="levelProgressText">Nivel 1 de 10</span>
+                        </div>
+                        <div class="grid grid-cols-10 gap-1 md:gap-1.5" id="levelBadgesContainer">
+                            <!-- Los 10 niveles se generan dinámicamente con JavaScript -->
+                        </div>
                     </div>
 
                     <div id="lightGame" class="flex flex-col items-center">
-                        <div id="lightDisplay" class="w-full max-w-xs h-24 rounded-2xl bg-slate-900 mb-4 flex items-center justify-center text-white font-bold text-xl shadow-inner transition-colors duration-300">
-                            Presiona Iniciar
+                        
+                        <!-- PANTALLA PRINCIPAL DE VISUALIZACIÓN DE SECUENCIA -->
+                        <div id="lightDisplay" class="w-full max-w-sm h-28 rounded-2xl bg-slate-900 mb-4 flex flex-col items-center justify-center text-white font-black shadow-inner transition-colors duration-300 relative overflow-hidden border-4 border-slate-800">
+                            <span id="lightDisplayText" class="text-xl md:text-2xl tracking-wide">Presiona "Iniciar Nivel 1"</span>
+                            <span id="lightDisplaySubtext" class="text-xs font-semibold text-slate-300 mt-1">Nivel 1: Secuencia de 2 destellos</span>
                         </div>
 
-                        <div class="grid grid-cols-2 gap-4 w-full max-w-xs mb-4">
-                            <button id="btnRed" onclick="pressColor(0)" class="h-24 rounded-2xl bg-red-500 font-bold text-white text-lg shadow-sm active:scale-95 transition-all flex flex-col items-center justify-center gap-1 border-4 border-white">
-                                <i class="fas fa-play -rotate-90 text-2xl"></i>
+                        <!-- PANELES DE COLORES Y FORMAS DE ALTO CONTRASTE -->
+                        <div class="grid grid-cols-2 gap-3 md:gap-4 w-full max-w-sm mb-4">
+                            <button id="btnRed" onclick="pressColor(0)" class="h-24 md:h-28 rounded-2xl bg-red-500 font-extrabold text-white text-base md:text-lg shadow-md active:scale-95 transition-all flex flex-col items-center justify-center gap-1 border-4 border-white cursor-pointer hover:brightness-110">
+                                <i class="fas fa-play -rotate-90 text-2xl md:text-3xl drop-shadow"></i>
                                 <span>TRIÁNGULO</span>
                             </button>
-                            <button id="btnBlue" onclick="pressColor(1)" class="h-24 rounded-2xl bg-blue-500 font-bold text-white text-lg shadow-sm active:scale-95 transition-all flex flex-col items-center justify-center gap-1 border-4 border-white">
-                                <i class="fas fa-square text-2xl"></i>
+                            <button id="btnBlue" onclick="pressColor(1)" class="h-24 md:h-28 rounded-2xl bg-blue-500 font-extrabold text-white text-base md:text-lg shadow-md active:scale-95 transition-all flex flex-col items-center justify-center gap-1 border-4 border-white cursor-pointer hover:brightness-110">
+                                <i class="fas fa-square text-2xl md:text-3xl drop-shadow"></i>
                                 <span>CUADRADO</span>
                             </button>
-                            <button id="btnGreen" onclick="pressColor(2)" class="h-24 rounded-2xl bg-emerald-500 font-bold text-white text-lg shadow-sm active:scale-95 transition-all flex flex-col items-center justify-center gap-1 border-4 border-white">
-                                <i class="fas fa-circle text-2xl"></i>
+                            <button id="btnGreen" onclick="pressColor(2)" class="h-24 md:h-28 rounded-2xl bg-emerald-500 font-extrabold text-white text-base md:text-lg shadow-md active:scale-95 transition-all flex flex-col items-center justify-center gap-1 border-4 border-white cursor-pointer hover:brightness-110">
+                                <i class="fas fa-circle text-2xl md:text-3xl drop-shadow"></i>
                                 <span>CÍRCULO</span>
                             </button>
-                            <button id="btnYellow" onclick="pressColor(3)" class="h-24 rounded-2xl bg-amber-500 font-bold text-white text-lg shadow-sm active:scale-95 transition-all flex flex-col items-center justify-center gap-1 border-4 border-white">
-                                <i class="fas fa-diamond text-2xl"></i>
+                            <button id="btnYellow" onclick="pressColor(3)" class="h-24 md:h-28 rounded-2xl bg-amber-500 font-extrabold text-white text-base md:text-lg shadow-md active:scale-95 transition-all flex flex-col items-center justify-center gap-1 border-4 border-white cursor-pointer hover:brightness-110">
+                                <i class="fas fa-diamond text-2xl md:text-3xl drop-shadow"></i>
                                 <span>ROMBO</span>
                             </button>
                         </div>
 
-                        <div id="lightStatus" class="font-bold text-base min-h-[28px] text-[#400428] mb-3">
-                            Haz clic en "Iniciar Secuencia Visual"
+                        <!-- ESTADO DE JUEGO Y CONTROLES -->
+                        <div id="lightStatus" class="font-bold text-base md:text-lg min-h-[32px] text-[#400428] mb-4 bg-[#f4E196]/50 px-4 py-2 rounded-xl border border-amber-300 w-full max-w-sm">
+                            ¡Comienza el reto de 10 niveles!
                         </div>
 
-                        <button onclick="startLightSequence()" class="custom-btn px-6 py-2 text-sm">
-                            Iniciar Secuencia Visual
-                        </button>
+                        <div class="flex flex-wrap items-center justify-center gap-3">
+                            <button id="startLevelBtn" onclick="startCurrentLevelSequence()" class="custom-btn px-6 py-3 text-base md:text-lg flex items-center gap-2">
+                                <i class="fas fa-play"></i> <span id="startLevelBtnText">Iniciar Nivel 1</span>
+                            </button>
+                            <button id="repeatSeqBtn" onclick="replayCurrentSequence()" class="custom-btn btn-secondary px-4 py-3 text-sm md:text-base flex items-center gap-2 hidden">
+                                <i class="fas fa-rotate-right"></i> Ver Secuencia de Nuevo
+                            </button>
+                            <button onclick="resetLightGameToLevel1()" class="custom-btn btn-secondary px-4 py-3 text-xs md:text-sm text-slate-600 flex items-center gap-1">
+                                <i class="fas fa-redo"></i> Reiniciar a Nivel 1
+                            </button>
+                        </div>
                     </div>
                 </div>
 
@@ -354,7 +418,7 @@
                             PUNTOS: <span id="switchScoreText" class="text-xl text-[#78576B]">0</span>
                         </div>
 
-                        <button onclick="triggerSingleSwitchAction()" class="custom-btn w-56 h-20 text-2xl font-black flex items-center justify-center gap-2 shadow-lg active:scale-95 bg-emerald-600 text-white border-4 border-white">
+                        <button onclick="triggerSingleSwitchAction()" class="custom-btn w-56 h-20 text-2xl font-black flex items-center justify-center gap-2 shadow-lg active:scale-95 bg-emerald-600 text-white border-4 border-white cursor-pointer">
                             PULSAR
                         </button>
                         <span class="text-xs text-slate-500 mt-2">(También puedes presionar la tecla ESPACIO en el teclado)</span>
@@ -557,19 +621,19 @@
 
                     <div id="multipleGame" class="flex flex-col items-center">
                         <div class="grid grid-cols-2 gap-4 w-full max-w-sm mb-4">
-                            <button onclick="triggerSensoryNode(1, '#EF4444', 261.63, 'Tono Grave - Frecuencia Roja')" class="h-24 rounded-2xl bg-red-500 text-white font-extrabold text-base shadow-sm active:scale-95 transition-all flex flex-col items-center justify-center border-4 border-white">
+                            <button onclick="triggerSensoryNode(1, '#EF4444', 261.63, 'Tono Grave - Frecuencia Roja')" class="h-24 rounded-2xl bg-red-500 text-white font-extrabold text-base shadow-sm active:scale-95 transition-all flex flex-col items-center justify-center border-4 border-white cursor-pointer">
                                 <i class="fas fa-sun text-2xl mb-1"></i>
                                 <span>ACTIVADOR 1</span>
                             </button>
-                            <button onclick="triggerSensoryNode(2, '#3B82F6', 329.63, 'Tono Medio - Frecuencia Azul')" class="h-24 rounded-2xl bg-blue-500 text-white font-extrabold text-base shadow-sm active:scale-95 transition-all flex flex-col items-center justify-center border-4 border-white">
+                            <button onclick="triggerSensoryNode(2, '#3B82F6', 329.63, 'Tono Medio - Frecuencia Azul')" class="h-24 rounded-2xl bg-blue-500 text-white font-extrabold text-base shadow-sm active:scale-95 transition-all flex flex-col items-center justify-center border-4 border-white cursor-pointer">
                                 <i class="fas fa-water text-2xl mb-1"></i>
                                 <span>ACTIVADOR 2</span>
                             </button>
-                            <button onclick="triggerSensoryNode(3, '#10B981', 392.00, 'Tono Armónico - Frecuencia Verde')" class="h-24 rounded-2xl bg-emerald-500 text-white font-extrabold text-base shadow-sm active:scale-95 transition-all flex flex-col items-center justify-center border-4 border-white">
+                            <button onclick="triggerSensoryNode(3, '#10B981', 392.00, 'Tono Armónico - Frecuencia Verde')" class="h-24 rounded-2xl bg-emerald-500 text-white font-extrabold text-base shadow-sm active:scale-95 transition-all flex flex-col items-center justify-center border-4 border-white cursor-pointer">
                                 <i class="fas fa-leaf text-2xl mb-1"></i>
                                 <span>ACTIVADOR 3</span>
                             </button>
-                            <button onclick="triggerSensoryNode(4, '#F59E0B', 523.25, 'Tono Agudo - Frecuencia Dorada')" class="h-24 rounded-2xl bg-amber-500 text-white font-extrabold text-base shadow-sm active:scale-95 transition-all flex flex-col items-center justify-center border-4 border-white">
+                            <button onclick="triggerSensoryNode(4, '#F59E0B', 523.25, 'Tono Agudo - Frecuencia Dorada')" class="h-24 rounded-2xl bg-amber-500 text-white font-extrabold text-base shadow-sm active:scale-95 transition-all flex flex-col items-center justify-center border-4 border-white cursor-pointer">
                                 <i class="fas fa-star text-2xl mb-1"></i>
                                 <span>ACTIVADOR 4</span>
                             </button>
@@ -630,8 +694,11 @@
 
         function toggleAudio() {
             audioEnabled = !audioEnabled;
-            document.getElementById('soundStatusText').innerText = audioEnabled ? "Sonido: ACTIVO" : "Sonido: INACTIVO";
-            if(audioEnabled) playTone(523, 'sine', 0.15);
+            const soundText = document.getElementById('soundStatusText');
+            const soundIcon = document.getElementById('soundIcon');
+            if (soundText) soundText.innerText = audioEnabled ? "Sonido: ACTIVO" : "Sonido: INACTIVO";
+            if (soundIcon) soundIcon.className = audioEnabled ? "fas fa-volume-up" : "fas fa-volume-mute";
+            if (audioEnabled) playTone(523, 'sine', 0.15);
         }
 
         function navigateTo(screenId) {
@@ -653,6 +720,7 @@
 
             window.scrollTo({ top: 0, behavior: 'smooth' });
 
+            if (screenId === 'auditivaScreen') renderLevelBadges();
             if (screenId === 'motrizScreen') startGaugeGame();
             else stopGaugeGame();
 
@@ -661,94 +729,252 @@
             if (screenId === 'psicosocialScreen') startStimulusGame();
         }
 
-        function triggerLogoUpload() {
-            document.getElementById('logoInput').click();
-        }
-
-        function handleLogoUpload(event) {
-            const file = event.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    const customLogo = document.getElementById('customLogo');
-                    const placeholder = document.getElementById('logoPlaceholder');
-                    customLogo.src = e.target.result;
-                    customLogo.classList.remove('hidden');
-                    placeholder.classList.add('hidden');
-                    playTone(800, 'sine', 0.2);
-                };
-                reader.readAsDataURL(file);
-            }
-        }
-
-        /* 1. JUEGO AUDITIVA: Ritmo y Luz Visual */
+        /* =========================================================================
+           1. JUEGO AUDITIVA: Ritmo y Luz Visual (10 NIVELES PROGRESIVOS)
+           ========================================================================= */
+        let currentLightLevel = 1;
+        const maxLightLevels = 10;
+        let maxLevelReached = 1;
         let lightSequence = [];
         let userLightStep = 0;
+        let isPlayingSequence = false;
+        let userCanInput = false;
+
         const colorLabels = ['TRIÁNGULO', 'CUADRADO', 'CÍRCULO', 'ROMBO'];
         const colorHexes = ['#EF4444', '#3B82F6', '#10B981', '#F59E0B'];
+        const colorBtnIds = ['btnRed', 'btnBlue', 'btnGreen', 'btnYellow'];
 
-        function startLightSequence() {
+        function renderLevelBadges() {
+            const container = document.getElementById('levelBadgesContainer');
+            if (!container) return;
+
+            container.innerHTML = '';
+            for (let i = 1; i <= maxLightLevels; i++) {
+                const badge = document.createElement('div');
+                badge.className = `level-badge rounded-lg text-center py-1.5 text-xs font-black transition-all flex flex-col items-center justify-center `;
+
+                if (i === currentLightLevel) {
+                    badge.className += "bg-amber-400 text-slate-900 border-2 border-amber-600 shadow-md active";
+                    badge.innerHTML = `<span>L${i}</span><i class="fas fa-star text-[10px] mt-0.5"></i>`;
+                } else if (i < currentLightLevel) {
+                    badge.className += "bg-emerald-500 text-white border border-emerald-600";
+                    badge.innerHTML = `<span>L${i}</span><i class="fas fa-check text-[10px] mt-0.5"></i>`;
+                } else if (i <= maxLevelReached) {
+                    badge.className += "bg-amber-100 text-amber-800 border border-amber-300";
+                    badge.innerHTML = `<span>L${i}</span><i class="fas fa-unlock text-[10px] mt-0.5"></i>`;
+                } else {
+                    badge.className += "bg-slate-200 text-slate-400 border border-slate-300";
+                    badge.innerHTML = `<span>L${i}</span><i class="fas fa-lock text-[10px] mt-0.5"></i>`;
+                }
+                container.appendChild(badge);
+            }
+
+            const levelProgText = document.getElementById('levelProgressText');
+            if (levelProgText) levelProgText.innerText = `Nivel ${currentLightLevel} de ${maxLightLevels}`;
+
+            const maxLvlText = document.getElementById('maxLevelText');
+            if (maxLvlText) maxLvlText.innerText = maxLevelReached;
+        }
+
+        function startCurrentLevelSequence() {
+            if (isPlayingSequence) return;
+
+            // La longitud de la secuencia aumenta con el nivel (Nivel 1 = 2 colores, Nivel 10 = 11 colores)
+            const sequenceLength = currentLightLevel + 1;
             lightSequence = [];
-            for (let i = 0; i < 3; i++) {
+            for (let i = 0; i < sequenceLength; i++) {
                 lightSequence.push(Math.floor(Math.random() * 4));
             }
+
             userLightStep = 0;
-            document.getElementById('lightStatus').innerText = "Observa la secuencia de luces y formas...";
+            isPlayingSequence = true;
+            userCanInput = false;
+
+            const repeatBtn = document.getElementById('repeatSeqBtn');
+            if (repeatBtn) repeatBtn.classList.add('hidden');
+
+            const status = document.getElementById('lightStatus');
+            status.innerHTML = `<span class="text-amber-700"><i class="fas fa-eye animate-bounce"></i> Nivel ${currentLightLevel}: Observa la secuencia (${sequenceLength} destellos)...</span>`;
+
+            playLightSequence(0);
+        }
+
+        function replayCurrentSequence() {
+            if (isPlayingSequence || lightSequence.length === 0) return;
+            userLightStep = 0;
+            isPlayingSequence = true;
+            userCanInput = false;
+
+            const status = document.getElementById('lightStatus');
+            status.innerHTML = `<span class="text-amber-700"><i class="fas fa-eye"></i> Re-mostrando Nivel ${currentLightLevel}...</span>`;
+
             playLightSequence(0);
         }
 
         function playLightSequence(index) {
+            // Ajustar la velocidad del destello según el nivel (más rápido en niveles altos)
+            const flashDuration = Math.max(260, 550 - (currentLightLevel * 25));
+            const pauseDuration = Math.max(180, 320 - (currentLightLevel * 15));
+
             if (index >= lightSequence.length) {
-                document.getElementById('lightStatus').innerText = "Tu turno: Repite la secuencia haciendo clic en los paneles.";
+                isPlayingSequence = false;
+                userCanInput = true;
+
                 const display = document.getElementById('lightDisplay');
                 display.style.backgroundColor = "#0f172a";
-                display.innerText = "TU TURNO";
+                
+                const mainText = document.getElementById('lightDisplayText');
+                const subText = document.getElementById('lightDisplaySubtext');
+                if (mainText) mainText.innerText = "¡TU TURNO!";
+                if (subText) subText.innerText = `Haz clic en los ${lightSequence.length} paneles en orden`;
+
+                const status = document.getElementById('lightStatus');
+                status.innerHTML = `<span class="text-emerald-700 font-extrabold"><i class="fas fa-hand-pointer"></i> ¡Tu turno! Repite la secuencia de ${lightSequence.length} destellos.</span>`;
+
+                const repeatBtn = document.getElementById('repeatSeqBtn');
+                if (repeatBtn) repeatBtn.classList.remove('hidden');
+
                 return;
             }
 
             const colorIdx = lightSequence[index];
             const display = document.getElementById('lightDisplay');
+            const mainText = document.getElementById('lightDisplayText');
+            const subText = document.getElementById('lightDisplaySubtext');
+
             display.style.backgroundColor = colorHexes[colorIdx];
-            display.innerText = colorLabels[colorIdx];
-            playTone(300 + (colorIdx * 120), 'sine', 0.4);
+            if (mainText) mainText.innerText = colorLabels[colorIdx];
+            if (subText) subText.innerText = `Paso ${index + 1} de ${lightSequence.length}`;
+
+            // Efecto de resplandor en el botón correspondiente
+            const btnEl = document.getElementById(colorBtnIds[colorIdx]);
+            if (btnEl) btnEl.classList.add('tile-active');
+
+            playTone(300 + (colorIdx * 120), 'sine', flashDuration / 1000);
 
             setTimeout(() => {
                 display.style.backgroundColor = "#0f172a";
-                display.innerText = "...";
+                if (mainText) mainText.innerText = "• • •";
+                if (btnEl) btnEl.classList.remove('tile-active');
+
                 setTimeout(() => {
                     playLightSequence(index + 1);
-                }, 300);
-            }, 600);
+                }, pauseDuration);
+            }, flashDuration);
         }
 
         function pressColor(index) {
-            if (lightSequence.length === 0) return;
+            if (!userCanInput || isPlayingSequence || lightSequence.length === 0) return;
 
             playTone(300 + (index * 120), 'sine', 0.2);
+            
             const display = document.getElementById('lightDisplay');
+            const mainText = document.getElementById('lightDisplayText');
+            const subText = document.getElementById('lightDisplaySubtext');
+
             display.style.backgroundColor = colorHexes[index];
-            display.innerText = colorLabels[index];
+            if (mainText) mainText.innerText = colorLabels[index];
 
             setTimeout(() => {
                 display.style.backgroundColor = "#0f172a";
-                display.innerText = "TU TURNO";
-            }, 300);
+                if (mainText) mainText.innerText = "¡TU TURNO!";
+            }, 250);
 
+            // Verificación del color presionado
             if (index === lightSequence[userLightStep]) {
                 userLightStep++;
+                if (subText) subText.innerText = `Progreso: ${userLightStep} / ${lightSequence.length}`;
+
+                // Se completó la secuencia entera del nivel actual
                 if (userLightStep === lightSequence.length) {
+                    userCanInput = false;
                     playTone(880, 'sine', 0.4);
-                    document.getElementById('lightStatus').innerText = "¡Excelente! Secuencia completada con éxito.";
-                    lightSequence = [];
+
+                    if (currentLightLevel < maxLightLevels) {
+                        currentLightLevel++;
+                        if (currentLightLevel > maxLevelReached) {
+                            maxLevelReached = currentLightLevel;
+                        }
+                        
+                        renderLevelBadges();
+
+                        const status = document.getElementById('lightStatus');
+                        status.innerHTML = `<span class="text-emerald-700 font-black"><i class="fas fa-circle-check text-xl"></i> ¡Nivel ${currentLightLevel - 1} Superado! Avanzando al Nivel ${currentLightLevel}...</span>`;
+
+                        const startBtnText = document.getElementById('startLevelBtnText');
+                        if (startBtnText) startBtnText.innerText = `Iniciar Nivel ${currentLightLevel}`;
+
+                        const repeatBtn = document.getElementById('repeatSeqBtn');
+                        if (repeatBtn) repeatBtn.classList.add('hidden');
+
+                        setTimeout(() => {
+                            startCurrentLevelSequence();
+                        }, 1200);
+
+                    } else {
+                        // ¡SE COMPLETARON LOS 10 NIVELES!
+                        maxLevelReached = 10;
+                        renderLevelBadges();
+                        playTone(1046, 'sine', 0.6);
+
+                        const status = document.getElementById('lightStatus');
+                        status.innerHTML = `<span class="text-amber-800 font-black text-lg"><i class="fas fa-trophy text-amber-500 animate-bounce"></i> ¡FELICIDADES! ¡Has completado los 10 Niveles de Ritmo y Luz Visual!</span>`;
+
+                        if (mainText) mainText.innerText = "¡CAMPEÓN!";
+                        if (subText) subText.innerText = "10 Niveles Completados con Éxito";
+
+                        const startBtnText = document.getElementById('startLevelBtnText');
+                        if (startBtnText) startBtnText.innerText = "Jugar de Nuevo";
+
+                        lightSequence = [];
+                    }
                 }
             } else {
+                // Error en la secuencia
+                userCanInput = false;
                 playTone(200, 'sawtooth', 0.3);
-                document.getElementById('lightStatus').innerText = "Secuencia incorrecta. Presiona 'Iniciar Secuencia Visual' para intentar de nuevo.";
-                lightSequence = [];
+
+                const status = document.getElementById('lightStatus');
+                status.innerHTML = `<span class="text-rose-700 font-bold"><i class="fas fa-circle-xmark"></i> Secuencia incorrecta en el Nivel ${currentLightLevel}. ¡Inténtalo de nuevo!</span>`;
+
+                if (mainText) mainText.innerText = "¡INTENTA DE NUEVO!";
+                if (subText) subText.innerText = `Secuencia fallada en Nivel ${currentLightLevel}`;
+
+                const startBtnText = document.getElementById('startLevelBtnText');
+                if (startBtnText) startBtnText.innerText = `Reintentar Nivel ${currentLightLevel}`;
             }
         }
 
-        /* 2. JUEGO VISUAL: Eco-Localización (Laberinto a Oscuras) */
+        function resetLightGameToLevel1() {
+            currentLightLevel = 1;
+            lightSequence = [];
+            userLightStep = 0;
+            isPlayingSequence = false;
+            userCanInput = false;
+
+            renderLevelBadges();
+
+            const display = document.getElementById('lightDisplay');
+            if (display) display.style.backgroundColor = "#0f172a";
+
+            const mainText = document.getElementById('lightDisplayText');
+            const subText = document.getElementById('lightDisplaySubtext');
+            if (mainText) mainText.innerText = "Presiona 'Iniciar Nivel 1'";
+            if (subText) subText.innerText = "Nivel 1: Secuencia de 2 destellos";
+
+            const startBtnText = document.getElementById('startLevelBtnText');
+            if (startBtnText) startBtnText.innerText = "Iniciar Nivel 1";
+
+            const repeatBtn = document.getElementById('repeatSeqBtn');
+            if (repeatBtn) repeatBtn.classList.add('hidden');
+
+            const status = document.getElementById('lightStatus');
+            if (status) status.innerHTML = "Reiniciado a Nivel 1. Presiona 'Iniciar Nivel 1' cuando estés listo.";
+        }
+
+        /* =========================================================================
+           2. JUEGO VISUAL: Eco-Localización (Laberinto a Oscuras)
+           ========================================================================= */
         const mazeSize = 7;
         let playerPos = { x: 0, y: 0 };
         const exitPos = { x: 6, y: 6 };
@@ -757,7 +983,6 @@
 
         function resetMazeGame() {
             playerPos = { x: 0, y: 0 };
-            // Simple grid layout with obstacles
             mazeGrid = [
                 [0, 0, 1, 0, 0, 0, 0],
                 [1, 0, 1, 0, 1, 1, 0],
@@ -850,16 +1075,17 @@
             }
         }
 
-        /* 3. JUEGO MOTRIZ: Acceso por Pulsador Único con Zona Verde Dinámica */
+        /* =========================================================================
+           3. JUEGO MOTRIZ: Acceso por Pulsador Único
+           ========================================================================= */
         let gaugeAnimId = null;
         let pointerAngle = 0;
         let switchScore = 0;
         let targetStart = 45; 
         let targetEnd = 105;
-        const targetArcSpan = 60; // Ancho del arco verde en grados
+        const targetArcSpan = 60;
 
         function randomizeTargetZone() {
-            // Genera un ángulo aleatorio entre 10 y 290 grados
             targetStart = Math.floor(Math.random() * 280) + 10;
             targetEnd = targetStart + targetArcSpan;
         }
@@ -893,13 +1119,11 @@
 
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            // Círculo de fondo oscuro
             ctx.beginPath();
             ctx.arc(cx, cy, radius, 0, Math.PI * 2);
             ctx.fillStyle = "#1e293b";
             ctx.fill();
 
-            // Zona Verde Dinámica
             ctx.beginPath();
             const startRad = (targetStart * Math.PI) / 180;
             const endRad = (targetEnd * Math.PI) / 180;
@@ -908,7 +1132,6 @@
             ctx.fillStyle = "#10b981";
             ctx.fill();
 
-            // Aguja Giratoria
             ctx.save();
             ctx.translate(cx, cy);
             ctx.rotate((pointerAngle * Math.PI) / 180);
@@ -921,7 +1144,6 @@
             ctx.stroke();
             ctx.restore();
 
-            // Punto Central
             ctx.beginPath();
             ctx.arc(cx, cy, 10, 0, Math.PI * 2);
             ctx.fillStyle = "#ffffff";
@@ -936,7 +1158,7 @@
                 switchScore += 10;
                 document.getElementById('switchScoreText').innerText = switchScore;
                 document.getElementById('switchFeedback').innerText = "¡Excelente precisión! Acertaste en la zona verde (+10 puntos). ¡La zona verde cambió de lugar!";
-                randomizeTargetZone(); // La zona verde cambia de dirección tras acertar
+                randomizeTargetZone();
             } else {
                 playTone(220, 'square', 0.2);
                 document.getElementById('switchFeedback').innerText = "Fuera de zona. Intenta pulsar justo cuando la aguja pase por la franja verde.";
@@ -953,7 +1175,9 @@
             }
         });
 
-        /* 4. JUEGO INTELECTUAL: Higiene Saludable */
+        /* =========================================================================
+           4. JUEGO INTELECTUAL: Higiene Saludable
+           ========================================================================= */
         const handwashTasks = [
             { id: 1, name: "1. Mojar las Manos" },
             { id: 2, name: "2. Aplicar Jabón" },
@@ -977,7 +1201,7 @@
             shuffled.forEach(task => {
                 const btn = document.createElement('button');
                 btn.id = `handTaskCard_${task.id}`;
-                btn.className = "custom-btn px-4 py-3 text-xs md:text-sm font-bold border-2 border-white";
+                btn.className = "custom-btn px-4 py-3 text-xs md:text-sm font-bold border-2 border-white cursor-pointer";
                 btn.innerText = task.name;
                 btn.onclick = () => selectHandTask(task);
                 pool.appendChild(btn);
@@ -1026,7 +1250,9 @@
             }
         }
 
-        /* 5. JUEGO PSICOSOCIAL: Calma de Estímulos */
+        /* =========================================================================
+           5. JUEGO PSICOSOCIAL: Calma de Estímulos
+           ========================================================================= */
         let calmInterval = null;
         let calmLevel = 100;
 
@@ -1095,13 +1321,22 @@
             }, 3000);
         }
 
-        /* 6. JUEGO MÚLTIPLE: Explorador Multisensorial */
+        /* =========================================================================
+           6. JUEGO MÚLTIPLE: Explorador Multisensorial
+           ========================================================================= */
         function triggerSensoryNode(id, hexColor, freq, description) {
             playTone(freq, 'sine', 0.4);
             const canvas = document.getElementById('multiCanvas');
-            canvas.style.backgroundColor = hexColor;
-            canvas.innerText = `Respuesta Multisensorial Adaptada: ${description}`;
+            if (canvas) {
+                canvas.style.backgroundColor = hexColor;
+                canvas.innerText = `Respuesta Multisensorial Adaptada: ${description}`;
+            }
         }
+
+        // Render level badges on initial load
+        window.onload = function() {
+            renderLevelBadges();
+        };
     </script>
 </body>
 </html>
